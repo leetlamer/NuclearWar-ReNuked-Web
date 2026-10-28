@@ -1,0 +1,65 @@
+{
+  "internal_resolution": [
+    320,
+    200
+  ],
+  "viewport_sizes": [
+    [
+      1920,
+      1080
+    ],
+    [
+      2560,
+      1440
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      1280,
+      720
+    ],
+    [
+      1024,
+      600
+    ],
+    [
+      800,
+      450
+    ],
+    [
+      640,
+      360
+    ],
+    [
+      360,
+      640
+    ],
+    [
+      320,
+      240
+    ],
+    [
+      240,
+      640
+    ]
+  ],
+  "browser_projects": [
+    "Chromium",
+    "installed Chrome",
+    "Playwright WebKit"
+  ],
+  "checks_passed": 117,
+  "checks_failed": 0,
+  "fullscreen": "enter, click portrait, exit; state preserved",
+  "DPR": "2x on all three; live 1.25x on Chromium/Chrome",
+  "scrollbars": "no page overflow at tested sizes; active frame and footer bounds checked",
+  "native_engine_suites": "10/10",
+  "wasm_engine_suites": "10/10",
+  "node_parity_tests": "3/3",
+  "build": "passed",
+  "static_subpath": "passed",
+  "desktop_tracked_files": "168 unchanged; Git unchanged",
+  "cpp_audio_gameplay_assets": "unchanged"
+}

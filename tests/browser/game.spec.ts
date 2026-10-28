@@ -42,9 +42,10 @@ test("selects opponents, enters game, and completes a build turn without extra a
   const canvas = page.locator("#screen");
   const click = async (x: number, y: number) => {
     const r = (await canvas.boundingBox())!;
+    const scale = Math.min(r.width / 320, r.height / 200);
     await page.mouse.click(
-      r.x + (x * r.width) / 320,
-      r.y + (y * r.height) / 200,
+      r.x + (r.width - 320 * scale) / 2 + x * scale,
+      r.y + (r.height - 200 * scale) / 2 + y * scale,
     );
   };
   await click(25, 65);
@@ -81,6 +82,12 @@ test("Three.js output is pixel-identical at native size and audio unlock/mute wo
   await page.goto("/");
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   await page.waitForTimeout(600);
+  // Exercise a native-resolution buffer independently of responsive page chrome.
+  await page.locator("#game").evaluate((element: HTMLElement) => {
+    element.style.width = "320px";
+    element.style.height = "200px";
+  });
+  await page.waitForTimeout(100);
   const result = await page.evaluate(() => {
     const app = (window as any).nuclearWar;
     app.renderer.render();

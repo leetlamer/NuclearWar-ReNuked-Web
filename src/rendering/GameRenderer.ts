@@ -3,6 +3,7 @@ import { contentBounds } from "./viewport";
 /** The preserved C++ compositor owns sprite coordinates and animation sequencing. */
 export class GameRenderer {
   private renderer: THREE.WebGLRenderer;
+  private pixelRatio = 0;
   private texture: THREE.CanvasTexture;
   private scene = new THREE.Scene();
   private camera = new THREE.OrthographicCamera(-160, 160, 100, -100, 0.1, 10);
@@ -29,17 +30,23 @@ export class GameRenderer {
       ),
     );
     new ResizeObserver(() => this.resize()).observe(canvas);
+    window.addEventListener("resize", () => this.resize());
+    window.visualViewport?.addEventListener("resize", () => this.resize());
     this.resize();
   }
   private resize() {
     const r = this.canvas.getBoundingClientRect();
     const w = Math.max(1, Math.round(r.width * devicePixelRatio)),
       h = Math.max(1, Math.round(r.height * devicePixelRatio));
-    this.renderer.setSize(w, h, false);
+    this.pixelRatio = devicePixelRatio;
+    if (this.canvas.width !== w || this.canvas.height !== h)
+      this.renderer.setSize(w, h, false);
     const v = contentBounds(w, h);
     this.renderer.setViewport(v.x, v.y, v.width, v.height);
   }
   render() {
+    // A monitor/DPR change may not change the observed CSS dimensions.
+    if (this.pixelRatio !== devicePixelRatio) this.resize();
     this.texture.needsUpdate = true;
     this.renderer.render(this.scene, this.camera);
   }

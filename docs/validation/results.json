@@ -7,7 +7,7 @@
   "node_parity_tests": "3/3 passed",
   "state_records": 2173,
   "trace_byte_identical": true,
-  "browser_checks": "81/81 passed",
+  "browser_checks": "117/117 passed after viewport fit correction",
   "browser_projects": [
     "Chromium",
     "installed Google Chrome",
@@ -20,9 +20,10 @@
   "edge": "not installed; untested",
   "production_subpath": "passed Wasm, assets, game start and audio; no page/network errors",
   "static_archive": "build/nuclear-war-renuked-web-static.zip",
-  "archive_sha256": "2c885313f6e4fc44d4f76b3a58bc9ab48023ea099c0e4708259f7cddb8f40dd2",
-  "archive_bytes": 14005545,
+  "archive_sha256": "5379e592a7116204ecbbae599eb6e9dde7fa73f59efc13f90e3c75d096b03d9d",
+  "archive_bytes": 14005690,
   "wasm_sha256": "be6f9b0a7da539ad653d5946e6478094b701248f3f0caf24a3968967915f7e53",
   "published": false,
-  "shutdown": false
+  "shutdown": false,
+  "viewport_validation": "docs/validation/viewport-results.json"
 }

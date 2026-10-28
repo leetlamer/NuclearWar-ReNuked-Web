@@ -19,7 +19,11 @@ try {
   assert.deepEqual(errors, []);
   assert.deepEqual(missing, []);
   const r = await page.locator("#screen").boundingBox();
-  await page.mouse.click(r.x + r.width * 0.4, r.y + r.height * 0.08);
+  const scale = Math.min(r.width / 320, r.height / 200);
+  await page.mouse.click(
+    r.x + (r.width - 320 * scale) / 2 + 128 * scale,
+    r.y + (r.height - 200 * scale) / 2 + 16 * scale,
+  );
   await page.waitForTimeout(500);
   assert.equal(
     await page.evaluate(() => window.nuclearWar.engine.status().screen),
