@@ -12,12 +12,13 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: github-pages
   cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -26,16 +27,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
+      - name: Install Emscripten 4.0.23
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: '4.0.23'
+          actions-cache-folder: emsdk-cache
+
+      - name: Verify Emscripten compiler
+        run: |
+          which em++
+          em++ --version
+
       - name: Install dependencies
         run: npm ci
 
-      - name: Build website
+      - name: Build WebAssembly and website
         run: npm run build
 
       - name: Configure GitHub Pages
