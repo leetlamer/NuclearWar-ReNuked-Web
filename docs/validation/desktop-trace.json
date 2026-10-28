@@ -1,0 +1,6 @@
+{
+  "records": 2173,
+  "sha256": "6e232a179c0668a255b89d857589a72c07ffd4d6eb8a003c89ac4cd563333198",
+  "reference_commit": "667af1d5a333214a1d8bed9ca1871254e6d061f8",
+  "fixtures": "eight fixed seeds plus actual human and AI elimination via the normal resolver; actor bytes, phase, RNG, inventories and revenge state"
+}

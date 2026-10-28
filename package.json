@@ -1,0 +1,26 @@
+{
+  "name": "nuclear-war-renuked-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build:wasm": "node tools/build-wasm.mjs",
+    "build": "npm run build:wasm && tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "npm run test:engine && node --test tests/*.test.mjs",
+    "test:browser": "playwright test --project=chromium",
+    "test:engine": "node tools/test-engine.mjs",
+    "build:test-wasm": "node tools/build-wasm.mjs --replay",
+    "test:browsers": "playwright test --project=chromium --project=chrome --project=webkit"
+  },
+  "dependencies": {
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.180.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0",
+    "@playwright/test": "^1.55.0"
+  }
+}

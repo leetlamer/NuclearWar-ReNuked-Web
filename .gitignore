@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.toolchain/
+build/
+test-results/
+playwright-report/
+.DS_Store
+public/engine/
+/build*.log
+/node_modules
