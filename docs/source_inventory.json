@@ -1,0 +1,476 @@
+[
+  {
+    "desktop": "CMakeLists.txt",
+    "web": "wasm/CMakeLists.txt",
+    "sha256": "820a369729873fe6e103cf6cf170fdc40b4489abbafac345c7df9a10cad389a9",
+    "unchanged": false
+  },
+  {
+    "desktop": "include/nuclear/bomber_navigation.hpp",
+    "web": "wasm/include/nuclear/bomber_navigation.hpp",
+    "sha256": "080c92e179ffef7898af1dc163d94586621d0e6fe754bedbd1932973f364deb4",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/ending.hpp",
+    "web": "wasm/include/nuclear/ending.hpp",
+    "sha256": "b9a0be1c6512c28324c8b51835a0bc2155828e753469218eff650e5f869ee993",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/engine.hpp",
+    "web": "wasm/include/nuclear/engine.hpp",
+    "sha256": "e86b25bf1b1fd8e1c321a8d7dcda584d6d2570b400d22ecc21f9bbf15f23b539",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/human_commands.hpp",
+    "web": "wasm/include/nuclear/human_commands.hpp",
+    "sha256": "978287f5389360e4a1ff583ca556f4f5873bc9fd41f7bb7661fa4b13162d894c",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/resolver_core.hpp",
+    "web": "wasm/include/nuclear/resolver_core.hpp",
+    "sha256": "55c4db7c3ff062e54da551dfdfd73a4177224ee9c203ab7b804a8a8d9fc2073e",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/resolver_markers.hpp",
+    "web": "wasm/include/nuclear/resolver_markers.hpp",
+    "sha256": "6043c7946a5ec77df2dbf4e4baa96789a924b83f7d2f70f91b42d5863eeeafbf",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/revenge_state.hpp",
+    "web": "wasm/include/nuclear/revenge_state.hpp",
+    "sha256": "610caa458f9299734c7b3f7fef72f44510d355293fa3bf64ec3289f7f242f4be",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/round_plan.hpp",
+    "web": "wasm/include/nuclear/round_plan.hpp",
+    "sha256": "a5b25f8c862b625c61e68baeadf6ee3b89cec9718e112b5c17b2787b2abee258",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/session.hpp",
+    "web": "wasm/include/nuclear/session.hpp",
+    "sha256": "94f9755301405e444424d5a1a25f4cc132accf74994fb3d78246c6eb4695a3cb",
+    "unchanged": true
+  },
+  {
+    "desktop": "include/nuclear/single_missile.hpp",
+    "web": "wasm/include/nuclear/single_missile.hpp",
+    "sha256": "fb3d9ce97f01e8443100e9fbb8e46e036c0d2b6410edc3a4e2d4a4c6e85ea7e6",
+    "unchanged": true
+  },
+  {
+    "desktop": "tools/deterministic_trace.cpp",
+    "web": "wasm/reference_tools/deterministic_trace.cpp",
+    "sha256": "733f2eba06cbdbfb00cb870ce81a25e8e302302212ed82397a6a7f4404c43058",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/audio/audio_manager.hpp",
+    "web": "wasm/src/audio/audio_manager.hpp",
+    "sha256": "338e9ea59a7bb06a221953bd80b1553a020183d918cd3d4a3a009599b8268504",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/core/asset_registry.hpp",
+    "web": "wasm/src/core/asset_registry.hpp",
+    "sha256": "e9f7bfcf0047a7134e26ccd8978b451b493bf2239a60fa7ca0d585ef335aa568",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/core/config.hpp",
+    "web": "wasm/src/core/config.hpp",
+    "sha256": "408510bba7973206587df8d53f9dda0353aadc6e876e0c35733233e93b2756c0",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/core/game_text.cpp",
+    "web": "wasm/src/core/game_text.cpp",
+    "sha256": "1b991e3c420530edfa4d5a0e727de459f9be1c3cbe3823d7dfb4153cbc46133d",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/core/game_text.hpp",
+    "web": "wasm/src/core/game_text.hpp",
+    "sha256": "279c5ebd6ce81703d1eeeeff6c39b1651c1429c693e206f7482206e9bba6d484",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/core/game_text_data.hpp",
+    "web": "wasm/src/core/game_text_data.hpp",
+    "sha256": "d9ae724f3df147209fc70c40e977c331600074eb714357552755e0d064024e68",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/ai/ai_controller.cpp",
+    "web": "wasm/src/game/ai/ai_controller.cpp",
+    "sha256": "c34eb9bb8fd82d32f59866157bc4ef1b1a0bcbffc2ae0f6e537ac9b755d5b588",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/combat/bomber_navigation.cpp",
+    "web": "wasm/src/game/combat/bomber_navigation.cpp",
+    "sha256": "18eeb14976da75b5fc36720b0cb3de21f1256230320319f63969f402f0b03603",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/combat/missile_attack.cpp",
+    "web": "wasm/src/game/combat/missile_attack.cpp",
+    "sha256": "5a69cf05f30bec09540b9525de2272158a4478caad70ab945c17e012c9c1cf7f",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/combat/resolver_markers.cpp",
+    "web": "wasm/src/game/combat/resolver_markers.cpp",
+    "sha256": "a6c85a661bda4b14cf6d524261504a675c7fb5cb6028d1026eba0786d37a48cd",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/combat/turn_resolver.cpp",
+    "web": "wasm/src/game/combat/turn_resolver.cpp",
+    "sha256": "32d4bcc218729476287cd00195938e645a73fc746ce2b4b041bbcaf87fb1617b",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/events/event_text.hpp",
+    "web": "wasm/src/game/events/event_text.hpp",
+    "sha256": "0a212a213171f168d4f85e367fc86bf86fa561e7d9003e4081015a3c6395f1f6",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/game_rules.cpp",
+    "web": "wasm/src/game/game_rules.cpp",
+    "sha256": "e9f1d77db52e6fa2fcc1dcdff260e2746a3f2e24f97f1784208da90227cd25be",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/revenge/revenge_system.hpp",
+    "web": "wasm/src/game/revenge/revenge_system.hpp",
+    "sha256": "a5686dae3b9e9336e555188eb66c5c06d6c45beaed326027d3852dfc9e4d4454",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/scoring.cpp",
+    "web": "wasm/src/game/scoring.cpp",
+    "sha256": "cd7ce342e38b710a1b754e3c65836758e8edfcca94746e925c887a8dbdb58371",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/turn_manager.cpp",
+    "web": "wasm/src/game/turn_manager.cpp",
+    "sha256": "2de09aac58191934aaf9b84410909e57c80c31fffbfca1bb6ceee9dad1f26847",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/turn_plan.cpp",
+    "web": "wasm/src/game/turn_plan.cpp",
+    "sha256": "171db82a8a9f5fb21ed3b82a4bf785130fe33d0d95969f4650751b7feae25e21",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/game/turn_resolver_adapter.hpp",
+    "web": "wasm/src/game/turn_resolver_adapter.hpp",
+    "sha256": "e747eb2092a430837ef677dcbdfbc4dd03f43309444166b08bb64bc89b08a350",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/platform/application.cpp",
+    "web": "wasm/src/platform/application.cpp",
+    "sha256": "055b7e1f7fbf6da45d5aa6885835f854b71ea8ebafbe007373aade36fdb0d42f",
+    "unchanged": false
+  },
+  {
+    "desktop": "src/platform/city_diagnostics.hpp",
+    "web": "wasm/src/platform/city_diagnostics.hpp",
+    "sha256": "b6da77cb6b762e63f5c5077fa9ace48e6c09efbb9d40b219eb2ec252a7aeec32",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/platform/launch_options.hpp",
+    "web": "wasm/src/platform/launch_options.hpp",
+    "sha256": "59242b8a15fb5d3530e826d743c0b80b1e25fc4018c4d517a6e804ed8ba337cf",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/platform/mood_diagnostics.hpp",
+    "web": "wasm/src/platform/mood_diagnostics.hpp",
+    "sha256": "a695318728b7a4707fd50c761c6466e33e4508928c70cb7e80a0a0992e204a76",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/platform/resources.cpp",
+    "web": "wasm/src/platform/resources.cpp",
+    "sha256": "38c9bd9c9c6de7fda829bed22f385cbd68371d0bc08b8779c32b39a0293eaa88",
+    "unchanged": false
+  },
+  {
+    "desktop": "src/platform/resources.hpp",
+    "web": "wasm/src/platform/resources.hpp",
+    "sha256": "10d122d2984482379f2ec9ebe91c8eb66a0df4e3ac1baffe80dd78979abe6086",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/rendering/action_media.hpp",
+    "web": "wasm/src/rendering/action_media.hpp",
+    "sha256": "fb9b6a7e3622e8efd038f76991ab406396c834e38ef0eef8ce648855a0154df2",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/rendering/animations/action_sprites.hpp",
+    "web": "wasm/src/rendering/animations/action_sprites.hpp",
+    "sha256": "4595cfb7194d565321a5928c5e6757ff7d763096c335301f74ebe5bbbbaf62df",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/rendering/animations/console_and_sound_cues.hpp",
+    "web": "wasm/src/rendering/animations/console_and_sound_cues.hpp",
+    "sha256": "bb4835d96436da5ee55da0d4e10fba1dcc2a6baec7bfa7ed1494622f81ecd652",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/rendering/animations/earthquake.hpp",
+    "web": "wasm/src/rendering/animations/earthquake.hpp",
+    "sha256": "34279b2441db71679e3f38af72506689d9b730cf3fcc1d04eb50b66878ca4f91",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/rendering/animations/selection_sprites.hpp",
+    "web": "wasm/src/rendering/animations/selection_sprites.hpp",
+    "sha256": "a81a613b4aaa91c1822a2b21f361104194f009bedc5beb51150eb306a53b62f9",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/rendering/animations/special_events.hpp",
+    "web": "wasm/src/rendering/animations/special_events.hpp",
+    "sha256": "4687b3967a43af566fe757ca79710144b54c7653c40dd78b503d4a45be8c4dcf",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/rendering/asset_layout.hpp",
+    "web": "wasm/src/rendering/asset_layout.hpp",
+    "sha256": "db5afeb243c4be5fffa42948c97bd354e77c6e01c8b91a3b808bd66b399d934f",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/rendering/renderer.hpp",
+    "web": "wasm/src/rendering/renderer.hpp",
+    "sha256": "0e98d3ceedeaf9404b9d441d0d0d23f7489a5a6820cacfefdf7df9dc8c00191c",
+    "unchanged": false
+  },
+  {
+    "desktop": "src/ui/action_messages.cpp",
+    "web": "wasm/src/ui/action_messages.cpp",
+    "sha256": "2234835545c73830637c2afbef75444f4d17d113916190692a6264aa841f5a73",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/action_selection_shutters.hpp",
+    "web": "wasm/src/ui/action_selection_shutters.hpp",
+    "sha256": "5b3d6b9179dce0d38fb2a13fd1c8fc15022a364319209c877d6b081e0057639c",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/animation_playback.hpp",
+    "web": "wasm/src/ui/animation_playback.hpp",
+    "sha256": "a763e69f3a1ad5dc27824e0a7e3f9a5d002626012c162221d656feff32a6f3d6",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/console_display.hpp",
+    "web": "wasm/src/ui/console_display.hpp",
+    "sha256": "90a3518e4fbb0164eb3ded9f976f13edfa536b570bafb89818e5e43a59e39060",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/endgame.hpp",
+    "web": "wasm/src/ui/endgame.hpp",
+    "sha256": "0657aa34cf292aca3999f28078a2de1f1a43f47711662ace6e9a2e19a846f8a8",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/human_commands.cpp",
+    "web": "wasm/src/ui/human_commands.cpp",
+    "sha256": "56de1c41d12df88d9a907d5ccfa0b0a57140f1222ad920edb3c8538914541b31",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/interface_layout.hpp",
+    "web": "wasm/src/ui/interface_layout.hpp",
+    "sha256": "ed83c70d52a9e2efbbce03de282d097c0f6f1c83799cd4c950e0465ee215e081",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/new_game_transition.hpp",
+    "web": "wasm/src/ui/new_game_transition.hpp",
+    "sha256": "8fdb762289b41b9a157daef2eb8f92c0773f5c5e9758cc57b32efec323a84cf8",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/player_controller.cpp",
+    "web": "wasm/src/ui/player_controller.cpp",
+    "sha256": "822ebb2105204977c448e5accb94d51c6d802f22c3258f16a3140483b26e68bf",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/player_controller.hpp",
+    "web": "wasm/src/ui/player_controller.hpp",
+    "sha256": "c8aa8bc21340560177109ddccd8d7fd5e523f1c0c04e6f4053b77bcc25107902",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/portrait_mood.hpp",
+    "web": "wasm/src/ui/portrait_mood.hpp",
+    "sha256": "6cc3aebe974113ae4b5c4c50cc9b34d7558d2ec460b97b1ccc416c77ef785f44",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/selection_chrome.hpp",
+    "web": "wasm/src/ui/selection_chrome.hpp",
+    "sha256": "903c554542e86c03e0ad41a18381a787756d04cc4b837944f4a0af08d5b89cae",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/target_selection.hpp",
+    "web": "wasm/src/ui/target_selection.hpp",
+    "sha256": "aed916ea7d63011f16e8e55bdb9a573dc869ff0f9445435cf96a00197fa51fb5",
+    "unchanged": true
+  },
+  {
+    "desktop": "src/ui/turn_presentation.hpp",
+    "web": "wasm/src/ui/turn_presentation.hpp",
+    "sha256": "cc9fb068ec35dbf40965209e1f6d42204bad8434bd83fb45b88ca4b07aa4a5b1",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/core/game_text_tests.cpp",
+    "web": "wasm/tests/core/game_text_tests.cpp",
+    "sha256": "c98f0d93444358eb37c32d06259ed927feadd7ea8154f69f569632de08b009c5",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/engine/ending_tests.cpp",
+    "web": "wasm/tests/engine/ending_tests.cpp",
+    "sha256": "6303334eaafb3d21d8fba77d2c2b57bfdb358c3304ef218f63770da2426da8ea",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/engine/engine_tests.cpp",
+    "web": "wasm/tests/engine/engine_tests.cpp",
+    "sha256": "9ab84bf728bc6aa88afaaa5d8f3fca7f1144fed3df91f82c65960e9fe4a84106",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/engine/resolver_marker_tests.cpp",
+    "web": "wasm/tests/engine/resolver_marker_tests.cpp",
+    "sha256": "c83df8e6784a653595379b4f7df65342ab76fcb0e5e363a19b4b2f33f75b625e",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/engine/round_plan_tests.cpp",
+    "web": "wasm/tests/engine/round_plan_tests.cpp",
+    "sha256": "18b48d0a6d84993cb16cc766ddbc8220c211a00d7fe46242d99d30b51ec61cf3",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/fixtures/format_fixtures.hpp",
+    "web": "wasm/tests/fixtures/format_fixtures.hpp",
+    "sha256": "4cc76919cb293520b8ca5d3097042a412ef2b00e1efc1c5f242a8b31282d2609",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/fixtures/tables.hpp",
+    "web": "wasm/tests/fixtures/tables.hpp",
+    "sha256": "cbad6a7ef2380686ee7bdcc91c387245b338e5fb1e39510002d7062b7b62dd1f",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/frontend/audio_tests.cpp",
+    "web": "wasm/tests/frontend/audio_tests.cpp",
+    "sha256": "3a01bad720b457516c12ed4e40bc3a12ad5987446135c57345358f3cf055ac3b",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/frontend/emoji_renderer_tests.cpp",
+    "web": "wasm/tests/frontend/emoji_renderer_tests.cpp",
+    "sha256": "00b7995dbdec63c9b549d5dab80ac05df31cdfd9dc9044decba3d3fcbfd883ba",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/frontend/render_tests.cpp",
+    "web": "wasm/tests/frontend/render_tests.cpp",
+    "sha256": "7cde5ef430b595a871f5299f9148571657b424bccc0b679c3c1b43e0a9bd2789",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/frontend/revenge_tests.cpp",
+    "web": "wasm/tests/frontend/revenge_tests.cpp",
+    "sha256": "e4e74a1e3d6ea619c4f06176f949f7f404d1a6190eeb1a87734c0e4d9a2beb1a",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/frontend/tests.cpp",
+    "web": "wasm/tests/frontend/tests.cpp",
+    "sha256": "c69f80a45b290496b8940451478909606d20b8d3251980a207efbbc0d09e57e9",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/resolver/resolver_core_tests.cpp",
+    "web": "wasm/tests/resolver/resolver_core_tests.cpp",
+    "sha256": "dedfec89b52d1298cdff3eff003a055edae30631d0513211fb1ee64c0d02d551",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/resolver/single_missile_tests.cpp",
+    "web": "wasm/tests/resolver/single_missile_tests.cpp",
+    "sha256": "2ca8032b2f5e4eb8fb9642c8ecbbf1661bc780141c864f4e52d996dc685d73f0",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/session/session_tests.cpp",
+    "web": "wasm/tests/session/session_tests.cpp",
+    "sha256": "951b5746e9c403d697cf408f2103551503feaf6b720ab887057f20816e5bde5e",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/support/replay_capture.inc",
+    "web": "wasm/tests/support/replay_capture.inc",
+    "sha256": "e38371017e3c2718ea5b02464e613363785119d922d2b1adefa3b9a46f388243",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/support/replay_console_capture.inc",
+    "web": "wasm/tests/support/replay_console_capture.inc",
+    "sha256": "9f07091026d792031b8d068ac7ac99054f1368b179c353cd3bb89a5509212228",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/support/replay_scene_setup.inc",
+    "web": "wasm/tests/support/replay_scene_setup.inc",
+    "sha256": "da500b84519598fc26ae958e30201e71b806933c12ce5b1f053e4514417ec11e",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/support/replay_session_setup.inc",
+    "web": "wasm/tests/support/replay_session_setup.inc",
+    "sha256": "e85595f1c68c77714ca0b290b942502fc2ed811b0105af5a528c834098595afa",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/support/replay_step.inc",
+    "web": "wasm/tests/support/replay_step.inc",
+    "sha256": "ae974d0119a0932a7edd2a8969293ffbcf6998f24472758e2b8a8c655e6f8223",
+    "unchanged": true
+  },
+  {
+    "desktop": "tests/support/session_fixtures.hpp",
+    "web": "wasm/tests/support/session_fixtures.hpp",
+    "sha256": "fdd47c11a0e97fa78a0131d7753ca3eaa91ee6468a66a0ed33c6e89b3c05c977",
+    "unchanged": true
+  }
+]

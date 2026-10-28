@@ -23,6 +23,15 @@ EMSCRIPTEN_KEEPALIVE void web_input(int kind, int x, int y) {
 }
 #include "platform/launch_options.hpp"
 #include "rendering/renderer.hpp"
+// Browser mute uses the existing sound manager rather than pausing its clock/queue.
+static SoundManager *web_audio = nullptr;
+extern "C" {
+EMSCRIPTEN_KEEPALIVE void web_mute(int value) {
+    if (web_audio && web_audio->muted() != bool(value)) web_audio->mute();
+}
+EMSCRIPTEN_KEEPALIVE int web_audio_muted() { return web_audio ? int(web_audio->muted()) : -1; }
+}
+
 #ifdef NWR_WITH_REPLAY
 #include "tests/support/session_fixtures.hpp"
 #endif
@@ -64,6 +73,7 @@ int main(int argc, char **argv) {
         display.endgame = &ending;
         SDL_StartTextInput();
         SoundManager sound(options.audio_clock, options.rates);
+        web_audio = &sound;
         std::cerr << "Audio clock=" << std::uint64_t(sound.effective_clock()) << "\n"
                   << sound.status << "\n";
         ActionPresentation scene;
@@ -642,8 +652,10 @@ int main(int argc, char **argv) {
             if (!options.smoke.empty() && SDL_GetTicks64() - start > 90000)
                 throw std::runtime_error("smoke timeout");
         }
+        web_audio = nullptr;
         return 0;
     } catch (const std::exception &e) {
+        web_audio = nullptr;
         EM_ASM({ if (Module["onGameError"]) Module["onGameError"](UTF8ToString($0)); }, e.what());
         std::cerr << e.what() << '\n';
         return 1;
