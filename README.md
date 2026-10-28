@@ -1,5 +1,7 @@
 # Nuclear War: Re-Nuked — Browser Edition
 
+<img width="1983" height="793" alt="Nuclear War_ Re-Nuked Beach Chaos" src="https://github.com/user-attachments/assets/babd8c28-6c13-4822-bb70-1498550ec73a" />
+
 An independent browser port of the completed C++17 desktop recreation. Gameplay,
 AI, RNG, combat, production, four-attack bomber-first revenge, scoring and the
 existing presentation controller run as WebAssembly. Three.js displays the game's
