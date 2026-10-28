@@ -1,9 +1,16 @@
 import * as THREE from "three";
+import { SpeechLayer } from "./SpeechLayer";
+import type { WasmModule } from "../engine/GameBridge";
 import { contentBounds, GAME_WIDTH, GAME_HEIGHT } from "./viewport";
 /** The preserved C++ compositor owns sprite coordinates and animation sequencing. */
 export class GameRenderer {
   private renderer: THREE.WebGLRenderer;
   private pixelRatio = 0;
+  private speech?: SpeechLayer;
+  attachSpeech(module: WasmModule) {
+    this.speech = new SpeechLayer(module);
+    this.scene.add(this.speech.mesh);
+  }
   private texture: THREE.CanvasTexture;
   private scene = new THREE.Scene();
   private camera = new THREE.OrthographicCamera(
@@ -97,6 +104,7 @@ export class GameRenderer {
   render() {
     // A monitor/DPR change may not change the observed CSS dimensions.
     if (this.pixelRatio !== devicePixelRatio) this.resize();
+    this.speech?.sync();
     this.texture.needsUpdate = true;
     this.renderer.render(this.scene, this.camera);
   }

@@ -30,6 +30,28 @@ static SoundManager *web_audio = nullptr;
 static std::unique_ptr<Renderer> web_prepared_renderer;
 static std::string web_prepare_error;
 extern "C" {
+// Read-only speech drawing bridge. No message/timer/gameplay logic lives in JS.
+EMSCRIPTEN_KEEPALIVE const char *web_speech_frame() {
+    static std::string frame;
+    frame = "[";
+    if (web_prepared_renderer) for (const auto &g : web_prepared_renderer->speech_glyphs) {
+        if (frame.size() > 1) frame += ",";
+        frame += "[" + std::to_string(g.source) + "," + std::to_string(g.x) + "," +
+                 std::to_string(g.y) + "," + std::to_string(g.width) + "," + std::to_string(g.height) + "]";
+    }
+    frame += "]";
+    return frame.c_str();
+}
+EMSCRIPTEN_KEEPALIVE const char *web_speech_font() {
+    static const std::string font = [] {
+        const auto image = nuclear::assets::image("bitmap_font");
+        std::string out = "{\"width\":" + std::to_string(image.width) +
+                          ",\"height\":" + std::to_string(image.height) + ",\"pixels\":[";
+        for (auto pixel : image.rgba) { if (out.back() != '[') out += ','; out += std::to_string(pixel); }
+        return out + "]}";
+    }();
+    return font.c_str();
+}
 EMSCRIPTEN_KEEPALIVE const char *web_prepare_graphics() {
     SDL_SetHint(SDL_HINT_EMSCRIPTEN_ASYNCIFY,"0");
     try {

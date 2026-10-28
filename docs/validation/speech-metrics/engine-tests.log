@@ -1,0 +1,99 @@
+
+> nuclear-war-renuked-web@1.0.0 test
+> npm run test:engine && node --test tests/*.test.mjs
+
+
+> nuclear-war-renuked-web@1.0.0 test:engine
+> node tools/test-engine.mjs
+
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/zellcorp/NuclearWar-ReNuked-Web/build/native
+[ 38%] Built target nuclear_game
+[ 44%] Built target engine_tests
+[ 50%] Built target ending_tests
+[ 55%] Built target round_plan_tests
+[ 61%] Built target session_tests
+[ 69%] Built target resolver_marker_tests
+[ 72%] Built target resolver_tests
+[ 77%] Built target missile_tests
+[ 83%] Built target player_tests
+[ 88%] Built target revenge_tests
+[ 94%] Built target text_tests
+[100%] Built target state_trace
+Test project /Users/zellcorp/NuclearWar-ReNuked-Web/build/native
+      Start  1: engine_tests
+ 1/10 Test  #1: engine_tests .....................   Passed    0.00 sec
+      Start  2: ending_tests
+ 2/10 Test  #2: ending_tests .....................   Passed    0.00 sec
+      Start  3: resolver_marker_tests
+ 3/10 Test  #3: resolver_marker_tests ............   Passed    0.00 sec
+      Start  4: round_plan_tests
+ 4/10 Test  #4: round_plan_tests .................   Passed    0.00 sec
+      Start  5: session_tests
+ 5/10 Test  #5: session_tests ....................   Passed    0.00 sec
+      Start  6: resolver_tests
+ 6/10 Test  #6: resolver_tests ...................   Passed    0.00 sec
+      Start  7: missile_tests
+ 7/10 Test  #7: missile_tests ....................   Passed    0.00 sec
+      Start  8: player_tests
+ 8/10 Test  #8: player_tests .....................   Passed    0.01 sec
+      Start  9: revenge_tests
+ 9/10 Test  #9: revenge_tests ....................   Passed    0.00 sec
+      Start 10: text_tests
+10/10 Test #10: text_tests .......................   Passed    0.00 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =   0.03 sec
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/zellcorp/NuclearWar-ReNuked-Web/build/wasm-tests
+[ 38%] Built target nuclear_game
+[ 44%] Built target engine_tests
+[ 55%] Built target resolver_tests
+[ 55%] Built target ending_tests
+[ 61%] Built target round_plan_tests
+[ 66%] Built target resolver_marker_tests
+[ 72%] Built target session_tests
+[ 77%] Built target missile_tests
+[ 83%] Built target player_tests
+[ 91%] Built target state_trace
+[ 94%] Built target revenge_tests
+[100%] Built target text_tests
+Test project /Users/zellcorp/NuclearWar-ReNuked-Web/build/wasm-tests
+      Start  1: engine_tests
+ 1/10 Test  #1: engine_tests .....................   Passed    0.24 sec
+      Start  2: ending_tests
+ 2/10 Test  #2: ending_tests .....................   Passed    0.08 sec
+      Start  3: resolver_marker_tests
+ 3/10 Test  #3: resolver_marker_tests ............   Passed    0.07 sec
+      Start  4: round_plan_tests
+ 4/10 Test  #4: round_plan_tests .................   Passed    0.07 sec
+      Start  5: session_tests
+ 5/10 Test  #5: session_tests ....................   Passed    0.08 sec
+      Start  6: resolver_tests
+ 6/10 Test  #6: resolver_tests ...................   Passed    0.07 sec
+      Start  7: missile_tests
+ 7/10 Test  #7: missile_tests ....................   Passed    0.07 sec
+      Start  8: player_tests
+ 8/10 Test  #8: player_tests .....................   Passed    0.41 sec
+      Start  9: revenge_tests
+ 9/10 Test  #9: revenge_tests ....................   Passed    0.11 sec
+      Start 10: text_tests
+10/10 Test #10: text_tests .......................   Passed    0.07 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =   1.28 sec
+✔ native and Wasm deterministic state trace equals frozen desktop baseline (3.727375ms)
+✔ all copied runtime assets remain byte-identical to the desktop baseline (3.973833ms)
+✔ gameplay sources remain byte-identical; only documented platform adapters differ (1.153834ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 99.5795

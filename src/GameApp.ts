@@ -35,6 +35,7 @@ export class GameApp {
       fail(error);
       return;
     }
+    renderer.attachSpeech(this.engine.module);
     loading.ready();
     const audio = new AudioManager(this.engine);
     const start = document.querySelector<HTMLButtonElement>("#start")!;

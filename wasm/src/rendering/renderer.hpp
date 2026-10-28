@@ -207,14 +207,16 @@ class Renderer {
             x += 6;
         }
     }
+    struct SpeechGlyph { int source; double x, y, width, height; };
+    std::vector<SpeechGlyph> speech_glyphs;
     void speech_text(const std::string &s, int x, int y) {
-        SDL_SetTextureColorMod(font_, 187, 0, 0);
+        // Keep the complete original 6x8 cell, including its spacing column.
+        // Uniform 5/6 scaling is deferred to the final GPU pass, not rasterized
+        // into 5x7 SDL pixels (which would discard strokes a second time).
+        constexpr double scale = 5.0 / 6.0;
         for (unsigned char c : s) {
             auto g = player_assets::glyphs[c >= 32 && c <= 127 ? c - 32 : 96];
-            // The sixth atlas column is spacing. Copy the five ink columns 1:1;
-            // shrinking 6x8 into 5x7 loses stems and descenders in software SDL.
-            copy(font_, {g.offset, 0, std::min(5, int(g.width)), 8},
-                 {x, y, std::min(5, int(g.width)), 8});
+            speech_glyphs.push_back({g.offset, double(x), double(y), g.width * scale, 8 * scale});
             x += 5;
         }
     }
@@ -234,6 +236,7 @@ class Renderer {
     }
     void render(const Player &player, bool show_log = false,
                 const ActionPresentation *scene = nullptr) {
+        speech_glyphs.clear();
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
         if (player.screen() != Screen::main) {
@@ -697,7 +700,7 @@ class Renderer {
             int line = 0;
             for (auto row : wrap_text(scene->visible_text(), 26))
                 if (line < 2)
-                    speech_text(row, r.x + 6, r.y + 3 + 8 * line++);
+                    speech_text(row, r.x + 6, r.y + 3 + 7 * line++);
         }
         if (scene && scene->door_visible() && player.human_alive() &&
             c.phase() == session::Phase::human_selection) {

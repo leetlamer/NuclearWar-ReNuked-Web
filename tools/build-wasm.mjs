@@ -41,7 +41,7 @@ const flags = [
   "-sEXPORT_ES6=1",
   "-sENVIRONMENT=web,node",
   "-sFORCE_FILESYSTEM=1",
-  '-sEXPORTED_FUNCTIONS=["_main","_web_input","_web_status","_web_mute","_web_audio_muted","_web_prepare_graphics","_web_prepare_audio"]',
+  '-sEXPORTED_FUNCTIONS=["_main","_web_input","_web_status","_web_mute","_web_audio_muted","_web_prepare_graphics","_web_prepare_audio","_web_speech_frame","_web_speech_font"]',
   '-sEXPORTED_RUNTIME_METHODS=["callMain","FS","UTF8ToString","IDBFS"]',
   "--post-js",
   "wasm/bindings/browser.js",

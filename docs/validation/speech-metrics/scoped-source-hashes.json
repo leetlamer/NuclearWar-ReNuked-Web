@@ -1,0 +1,14 @@
+{
+  "scope": "speech typography only; excludes pre-existing index.html edit",
+  "source_sha256": {
+    "src/GameApp.ts": "54e21a3be2142fad5db30bd01ebc9cd7fd984f4e2ae7beee2065cd070442cb9b",
+    "src/engine/GameBridge.ts": "aae491240852bd629057bc71f906cda2e0cb6a85712e2a416430a5540001e763",
+    "src/rendering/GameRenderer.ts": "6f087d540185fc69d1ef1660f5e59ec9bd6177d09387f7f771d00c6a863a5178",
+    "src/rendering/SpeechLayer.ts": "73067703c5953221c41a63d1fb755871f518bda2c724afbf2489bce45fbc9a98",
+    "wasm/src/platform/application.cpp": "830740bd8dd6eb4e0f13ef02f0faf23bb04ee8067e75a05bcda29d0cdbce82df",
+    "wasm/src/rendering/renderer.hpp": "efce1e19556aed1a9db502022952a5af35e265bb95c707484bb316ad46a50b8e",
+    "tools/build-wasm.mjs": "fae4a58c415415972fd81db3bbbf4f5a3764b6ed998d3bfa3abd86d478e4af7c",
+    "tests/browser/speech-font.spec.ts": "ad19f2e41164baa8e9bdcbb78b7ad01914c7db84b82989701cc2c663dab56ff3"
+  },
+  "index_unchanged_from_task_start": true
+}

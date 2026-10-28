@@ -1,0 +1,38 @@
+{
+  "source_cell": [
+    6,
+    8
+  ],
+  "previous_web_cropped_cell": [
+    5,
+    8
+  ],
+  "desktop_cell": [
+    5,
+    7
+  ],
+  "new_cell": [
+    5,
+    6.666666666666667
+  ],
+  "uniform_scale": 0.8333333333333334,
+  "advance": 5,
+  "previous_line_pitch": 8,
+  "new_line_pitch": 7,
+  "padding": [
+    6,
+    3
+  ],
+  "wrap_columns": 26,
+  "browser_checks": "105/105 passed",
+  "browsers": [
+    "Chromium",
+    "installed Chrome",
+    "Playwright WebKit"
+  ],
+  "native_and_wasm_suites": "10/10 each",
+  "node_parity_tests": "3/3",
+  "desktop_state_records": 2173,
+  "font_asset_changed": false,
+  "preexisting_index_edit_preserved": true
+}

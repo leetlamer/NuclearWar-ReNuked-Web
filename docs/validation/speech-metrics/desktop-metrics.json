@@ -1,0 +1,21 @@
+{
+  "message": "I will crush you!",
+  "sourceDimensions": [
+    1920,
+    1200
+  ],
+  "scale": 6,
+  "logicalBubble": [
+    63,
+    38,
+    104,
+    13
+  ],
+  "glyphCell": [
+    5,
+    7
+  ],
+  "advance": 5,
+  "linePitch": 7,
+  "sourceSha256": "b8a736444aae12afc6e3d9486473c6ff4aa8969d361f852865474ec83e3df789"
+}

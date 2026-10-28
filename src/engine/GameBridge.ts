@@ -1,6 +1,8 @@
 export interface WasmModule {
   _web_input(kind: number, x: number, y: number): void;
   _web_status(): number;
+  _web_speech_frame(): number;
+  _web_speech_font(): number;
   _web_prepare_graphics(): number;
   _web_prepare_audio(): number;
   _web_mute(value: number): void;
