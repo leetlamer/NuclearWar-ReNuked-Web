@@ -132,6 +132,7 @@ class Renderer {
     double preparation_seconds{.4};
     std::string console_visible;
     bool console_typing{};
+    double presentation_rate{1.};
     int explosion_size{20};
     SDL_Window *window{};
     SDL_Renderer *renderer{};
@@ -210,7 +211,10 @@ class Renderer {
         SDL_SetTextureColorMod(font_, 187, 0, 0);
         for (unsigned char c : s) {
             auto g = player_assets::glyphs[c >= 32 && c <= 127 ? c - 32 : 96];
-            copy(font_, {g.offset, 0, g.width, 8}, {x, y, std::max(1, int(g.width) * 5 / 6), 7});
+            // The sixth atlas column is spacing. Copy the five ink columns 1:1;
+            // shrinking 6x8 into 5x7 loses stems and descenders in software SDL.
+            copy(font_, {g.offset, 0, std::min(5, int(g.width)), 8},
+                 {x, y, std::min(5, int(g.width)), 8});
             x += 5;
         }
     }
@@ -482,7 +486,7 @@ class Renderer {
         }
         auto clock = SDL_GetTicks64();
         if (!scene || scene->main_text_visible())
-            main_text_.tick(main_tick_ ? (clock - main_tick_) / 1000.0 : 0);
+            main_text_.tick(main_tick_ ? (clock - main_tick_) / 1000.0 * presentation_rate : 0);
         main_tick_ = clock;
         if (scene && scene->human_console()) {
             console_.observe(1, scene->console_source(), scene->console_prefix());
@@ -693,7 +697,7 @@ class Renderer {
             int line = 0;
             for (auto row : wrap_text(scene->visible_text(), 26))
                 if (line < 2)
-                    speech_text(row, r.x + 6, r.y + 3 + 7 * line++);
+                    speech_text(row, r.x + 6, r.y + 3 + 8 * line++);
         }
         if (scene && scene->door_visible() && player.human_alive() &&
             c.phase() == session::Phase::human_selection) {

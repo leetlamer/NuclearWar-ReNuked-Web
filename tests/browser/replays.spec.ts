@@ -5,14 +5,14 @@ async function begin(page: any, args: string[]) {
   page.on("console", (msg: any) => messages.push(msg.text()));
   await page.goto("/?testReplay=1");
   await expect(
-    page.getByRole("button", { name: "Start game", exact: true }),
+    page.getByRole("button", { name: "Start Game", exact: true }),
   ).toBeEnabled();
   await page.evaluate((args: string[]) => {
     const m = (window as any).nuclearWar.engine.module,
       original = m.callMain;
     m.callMain = () => original(args);
   }, args);
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   return messages;
 }
 test("desktop endgame replay restarts twice with fresh game state and persisted scores", async ({
@@ -51,7 +51,7 @@ test("desktop endgame replay restarts twice with fresh game state and persisted 
   await page.waitForTimeout(300);
   await page.reload();
   await expect(
-    page.getByRole("button", { name: "Start game", exact: true }),
+    page.getByRole("button", { name: "Start Game", exact: true }),
   ).toBeEnabled();
   expect(
     await page.evaluate(() =>

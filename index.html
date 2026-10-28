@@ -23,11 +23,30 @@
           height="200"
           aria-hidden="true"
         ></canvas>
-        <div id="loading" role="status">Loading engine…</div>
+        <div id="loading">
+          <img
+            id="loading-banner"
+            alt="Official Nuclear War: Re-Nuked beach apocalypse banner"
+          />
+          <h2>Nuclear War: Re-Nuked</h2>
+          <div id="load-status" role="status" aria-live="polite">
+            Loading game engine...
+          </div>
+          <div class="progress-row">
+            <progress
+              id="load-progress"
+              max="100"
+              value="0"
+              aria-label="Game loading progress"
+            ></progress
+            ><span id="load-percent">0%</span>
+          </div>
+          <button id="start" disabled>Start Game</button
+          ><button id="retry" hidden>Retry</button>
+        </div>
       </section>
       <footer>
-        <button id="start" disabled>Loading…</button
-        ><button id="fullscreen">Fullscreen</button
+        <button id="fullscreen">Fullscreen</button
         ><label><input id="mute" type="checkbox" /> Mute</label>
         <p>
           Click to select · Short click skips an action · Hold for 1.5× playback

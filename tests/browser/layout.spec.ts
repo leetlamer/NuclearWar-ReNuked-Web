@@ -18,7 +18,7 @@ for (const [width, height] of sizes) {
   }, info) => {
     await page.setViewportSize({ width, height });
     await page.goto("/");
-    await page.getByRole("button", { name: "Start game", exact: true }).click();
+    await page.getByRole("button", { name: "Start Game", exact: true }).click();
     await page.waitForTimeout(500);
     const layout = await page.evaluate(() => {
       const canvas = document.querySelector("#screen")!,
@@ -93,7 +93,7 @@ test("resizes a running game and enters/exits fullscreen without resetting state
   page,
 }) => {
   await page.goto("/");
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   await page.waitForTimeout(500);
   const initial = await page.evaluate(() =>
     (window as any).nuclearWar.engine.status(),
@@ -157,7 +157,7 @@ test("uses device pixel ratio for sharpness without enlarging CSS layout", async
   });
   const page = await context.newPage();
   await page.goto("/");
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   await page.waitForTimeout(500);
   const v = await page.locator("#screen").evaluate((c: HTMLCanvasElement) => ({
     w: c.width,

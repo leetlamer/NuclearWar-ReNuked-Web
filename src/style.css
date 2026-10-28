@@ -99,3 +99,58 @@ button:focus-visible {
 #error:empty {
   display: none;
 }
+/* Loading chrome is contained inside the already-correct available game row. */
+#loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.25rem, 1vmin, 0.75rem);
+  padding: clamp(0.4rem, 2vmin, 1.5rem);
+  box-sizing: border-box;
+  background: linear-gradient(#111923, #080c12);
+}
+#loading-banner {
+  width: 100%;
+  min-height: 0;
+  max-height: 65%;
+  flex: 0 1 auto;
+  object-fit: contain;
+}
+#loading h2 {
+  margin: 0;
+  font-size: clamp(0.85rem, 2.5vw, 1.4rem);
+}
+#load-status {
+  text-align: center;
+  font-size: clamp(0.7rem, 1.6vw, 0.95rem);
+}
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: min(100%, 32rem);
+}
+#load-progress {
+  width: 100%;
+  height: 1rem;
+  accent-color: #f4b544;
+}
+#load-percent {
+  min-width: 3ch;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-height: 450px) {
+  #loading-banner {
+    max-height: 45%;
+  }
+  #loading h2 {
+    display: none;
+  }
+  #loading {
+    gap: 0.2rem;
+  }
+  #loading button {
+    padding: 0.25rem 0.7rem;
+  }
+}

@@ -65,10 +65,10 @@ if (!options.fixture.empty()) {
     if (options.fixture == "speech-action" || options.fixture == "speech" ||
         options.fixture == "portrait") {
         ActionEvent event;
-        event.actor = 0;
+        event.actor = options.replay_actor < 4 ? options.replay_actor : 0;
         event.region = EventRegion::speech;
-        event.identity = state.identity[0];
-        event.speech = reaction_text(event.identity, 1);
+        event.identity = state.identity[event.actor];
+        event.speech = options.browser_speech.empty() ? reaction_text(event.identity, 1) : options.browser_speech;
         scene = ActionPresentation::replay_event(event, state);
     }
     if (options.fixture == "human-production" || options.fixture == "100mt-production" ||

@@ -2,6 +2,7 @@ import { GameEngine } from "./engine/GameEngine";
 import { GameRenderer } from "./rendering/GameRenderer";
 import { AudioManager } from "./audio/AudioManager";
 import { InputManager } from "./input/InputManager";
+import { LoadingScreen } from "./ui/LoadingScreen";
 export class GameApp {
   engine = new GameEngine();
   renderer!: GameRenderer;
@@ -9,16 +10,38 @@ export class GameApp {
     const canvas = document.querySelector<HTMLCanvasElement>("#screen")!;
     const source = document.querySelector<HTMLCanvasElement>("#source")!;
     const renderer = (this.renderer = new GameRenderer(canvas, source));
+    const loading = new LoadingScreen();
     const fail = (error: unknown) => {
+      loading.fail(error);
       document.querySelector("#error")!.textContent = String(error);
       console.error(error);
     };
-    await this.engine.load(source, fail);
+    const banner = document.querySelector<HTMLImageElement>("#loading-banner")!;
+    banner.src = new URL(
+      `${import.meta.env.BASE_URL}assets/branding/nuclear-war-renuked-banner.png`,
+      document.baseURI,
+    ).href;
+    const bannerReady = banner.decode().catch(() => {
+      throw Error("Official banner could not be loaded");
+    });
+    try {
+      await Promise.all([
+        bannerReady,
+        this.engine.load(source, fail, (value, status) =>
+          loading.update(value, status),
+        ),
+      ]);
+    } catch (error) {
+      fail(error);
+      return;
+    }
+    loading.ready();
     const audio = new AudioManager(this.engine);
     const start = document.querySelector<HTMLButtonElement>("#start")!;
-    start.disabled = false;
-    start.textContent = "Start game";
+
     start.onclick = () => {
+      if (start.disabled) return;
+      start.disabled = true;
       this.engine.start();
       void audio.mute(
         document.querySelector<HTMLInputElement>("#mute")!.checked,

@@ -23,8 +23,32 @@ EMSCRIPTEN_KEEPALIVE void web_input(int kind, int x, int y) {
 }
 #include "platform/launch_options.hpp"
 #include "rendering/renderer.hpp"
+#include "core/asset_registry.hpp"
+#include "platform/presentation_controls.hpp"
 // Browser mute uses the existing sound manager rather than pausing its clock/queue.
 static SoundManager *web_audio = nullptr;
+static std::unique_ptr<Renderer> web_prepared_renderer;
+static std::string web_prepare_error;
+extern "C" {
+EMSCRIPTEN_KEEPALIVE const char *web_prepare_graphics() {
+    SDL_SetHint(SDL_HINT_EMSCRIPTEN_ASYNCIFY,"0");
+    try {
+        if (!web_prepared_renderer) web_prepared_renderer = std::make_unique<Renderer>();
+        web_prepare_error.clear();
+    } catch (const std::exception &e) { web_prepare_error = e.what(); }
+    return web_prepare_error.c_str();
+}
+EMSCRIPTEN_KEEPALIVE const char *web_prepare_audio() {
+    try {
+        for (const auto &entry : nuclear::assets::audio)
+            if (nuclear::assets::wave(entry.key).samples.empty())
+                throw std::runtime_error("Invalid critical audio: " + std::string(entry.key));
+        web_prepare_error.clear();
+    } catch (const std::exception &e) { web_prepare_error = e.what(); }
+    return web_prepare_error.c_str();
+}
+}
+
 extern "C" {
 EMSCRIPTEN_KEEPALIVE void web_mute(int value) {
     if (web_audio && web_audio->muted() != bool(value)) web_audio->mute();
@@ -53,7 +77,8 @@ int main(int argc, char **argv) {
 #ifdef NWR_WITH_REPLAY
 #include "tests/support/replay_session_setup.inc"
 #endif
-        Renderer display;
+        if (!web_prepared_renderer) web_prepared_renderer = std::make_unique<Renderer>();
+        Renderer &display = *web_prepared_renderer;
         display.target_shutters.duration(options.selection_door_seconds);
         display.action_shutters.duration(options.selection_door_seconds);
         std::string score_path;
@@ -110,6 +135,8 @@ int main(int argc, char **argv) {
 #include "tests/support/replay_scene_setup.inc"
 #endif
         TurnPlayback playback;
+        PlaybackKey web_pressed_event{};
+        double web_playback_rate = 1.;
         playback.threshold(options.hold_ms);
         NewGameTransition new_game;
         new_game.duration(options.new_game_fade_seconds);
@@ -166,9 +193,9 @@ int main(int argc, char **argv) {
                         playback.cancel();
                     continue;
                 }
-                auto playback_key = PlaybackKey{scene.serial(), scene.index()};
+                auto playback_key = PlaybackKey{scene.serial(), 0};
                 bool eligible =
-                    !show_log && player.screen() == Screen::main && scene.input_eligible();
+                    !show_log && player.screen() == Screen::main && turn_hold_eligible(scene);
                 if (event.type == SDL_WINDOWEVENT &&
                     event.window.event == SDL_WINDOWEVENT_FOCUS_LOST) {
                     playback.cancel();
@@ -177,14 +204,24 @@ int main(int argc, char **argv) {
                 }
                 if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
                     auto released = playback.release(SDL_GetTicks64(), playback_key, eligible);
-                    if (released == PlaybackRelease::instant_complete)
-                        scene.instant_complete(SDL_GetTicks64());
+                    if (released == PlaybackRelease::instant_complete &&
+                        !(web_pressed_event != PlaybackKey{scene.serial(),scene.index()})) {
+                        if(scene.input_eligible()) scene.instant_complete(SDL_GetTicks64());
+                        else if(!scene.accepts_action_click() && !scene.transition_active())
+                            scene.click(SDL_GetTicks64());
+                    }
                     if (released != PlaybackRelease::ignored)
                         continue;
                 }
-                if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT &&
-                    playback.press(SDL_GetTicks64(), playback_key, eligible))
-                    continue;
+                if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+                    // Ready human controls, especially emoji clicks under speech, stay immediate.
+                    bool decision = scene.accepts_action_click() &&
+                        selection_control_at(event.button.x,event.button.y);
+                    if (!decision && playback.press(SDL_GetTicks64(), playback_key, eligible)) {
+                        web_pressed_event = {scene.serial(),scene.index()};
+                        continue;
+                    }
+                }
 
                 if (ending.active()) {
                     if (event.type == SDL_MOUSEBUTTONDOWN &&
@@ -336,7 +373,7 @@ int main(int argc, char **argv) {
             scene.bomber_speed(options.bomber_speed);
             scene.stork_speed(options.stork_speed);
             auto frame_time = SDL_GetTicks64();
-            double fade_dt = options.smoke.empty() ? (frame_time - last_frame) / 1000. : .10;
+            double fade_dt = (options.smoke.empty() || options.browser_realtime) ? (frame_time - last_frame) / 1000. : .10;
             new_game.tick(fade_dt);
             if (new_game.take_reset()) {
                 playback = TurnPlayback{};
@@ -371,10 +408,12 @@ int main(int argc, char **argv) {
                 new_game.reset_done();
             }
             if (!show_log) {
-                double dt = options.smoke.empty() ? (frame_time - last_frame) / 1000.0 : 0.10;
-                bool eligible = player.screen() == Screen::main && scene.input_eligible();
+                double dt = (options.smoke.empty() || options.browser_realtime) ? (frame_time - last_frame) / 1000.0 : 0.10;
+                bool eligible = player.screen() == Screen::main && turn_hold_eligible(scene);
                 double accelerated = playback.seconds(dt, last_frame, frame_time,
-                                                      {scene.serial(), scene.index()}, eligible);
+                                                      {scene.serial(), 0}, eligible);
+                web_playback_rate = dt > 0 ? accelerated / dt : 1.;
+                display.presentation_rate = web_playback_rate;
                 scene.playback_tick(accelerated, accelerated > dt);
                 if (!options.playback_replay.empty()) {
                     std::ofstream trace(options.smoke + "/playback_frames.jsonl", std::ios::app);
@@ -634,13 +673,22 @@ int main(int argc, char **argv) {
                 ++presented_frames;
 
 #ifdef NWR_WITH_REPLAY
+if(!options.browser_realtime) {
 #include "tests/support/replay_step.inc"
+}
 #endif
             if (!show_log)
                 scene.finish_production();
             web_status_json = "{\"screen\":" + std::to_string(int(player.screen())) +
                 ",\"round\":" + std::to_string(player.round()) +
                 ",\"stage\":" + std::to_string(stage) +
+                ",\"action\":" + std::to_string(scene.active()?scene.event().action:0) +
+                ",\"revenge\":" + (scene.active() && scene.event().revenge?"true":"false") +
+                ",\"transition\":" + (scene.transition_active()?"true":"false") +
+                ",\"timeline\":" + std::to_string(scene.elapsed()) +
+                ",\"playbackRate\":" + std::to_string(web_playback_rate) +
+                ",\"eventIndex\":" + std::to_string(scene.index()) +
+                ",\"speech\":" + (scene.speech_visible() ? "true" : "false") +
                 ",\"selected\":" + std::to_string(player.selection().count) +
                 ",\"active\":" + (scene.active() ? "true" : "false") +
                 ",\"eligible\":" + (scene.input_eligible() ? "true" : "false") +

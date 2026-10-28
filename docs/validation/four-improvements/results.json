@@ -1,0 +1,30 @@
+{
+  "browser_checks": "216/216 passed",
+  "browser_projects": [
+    "Chromium",
+    "installed Chrome",
+    "Playwright WebKit"
+  ],
+  "native_suites": "10/10",
+  "wasm_suites": "10/10",
+  "ubsan_suites": "10/10",
+  "node_parity_tests": "3/3",
+  "state_records": 2173,
+  "banner_sha256": "68fc5ac1a54999d209615113de05f8593d007065f71da4191c75305c17ab07ca",
+  "banner_dimensions": [
+    1983,
+    793
+  ],
+  "hold_threshold_ms": 200,
+  "normal_interval_seconds": [
+    3,
+    3.015
+  ],
+  "held_interval_seconds": [
+    2.068,
+    2.087
+  ],
+  "audio_listening": "not performed; actual Web Audio unlock/state verified",
+  "desktop_preservation": "168 tracked files and Git unchanged",
+  "published": false
+}

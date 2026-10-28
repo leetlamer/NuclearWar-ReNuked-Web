@@ -11,6 +11,11 @@ export class InputManager {
     engine: GameEngine,
     audio: AudioManager,
   ) {
+    let pressed = false;
+    const cancel = () => {
+      pressed = false;
+      engine.input(3);
+    };
     const point = (e: PointerEvent) => {
       const r = canvas.getBoundingClientRect();
       const p = displayToLogical(
@@ -26,12 +31,14 @@ export class InputManager {
       e.preventDefault();
       canvas.focus();
       canvas.setPointerCapture(e.pointerId);
+      pressed = true;
       void audio.unlock();
       const [x, y] = point(e);
       if (x >= 0 && x < GAME_WIDTH && y >= 0 && y < GAME_HEIGHT)
         engine.input(1, x, y);
     });
     canvas.addEventListener("pointerup", (e) => {
+      pressed = false;
       if (e.button !== 0) return;
       e.preventDefault();
       const [x, y] = point(e);
@@ -41,8 +48,14 @@ export class InputManager {
       const [x, y] = point(e);
       engine.input(0, x, y);
     });
-    canvas.addEventListener("pointercancel", () => engine.input(3));
-    window.addEventListener("blur", () => engine.input(3));
+    canvas.addEventListener("pointercancel", cancel);
+    canvas.addEventListener("lostpointercapture", () => {
+      if (pressed) cancel();
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) cancel();
+    });
+    window.addEventListener("blur", cancel);
     canvas.addEventListener("contextmenu", (e) => e.preventDefault());
   }
 }

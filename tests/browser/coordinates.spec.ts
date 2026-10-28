@@ -17,7 +17,7 @@ for (const [dpr, width, height] of [
     });
     const page = await context.newPage();
     await page.goto("/");
-    await page.getByRole("button", { name: "Start game", exact: true }).click();
+    await page.getByRole("button", { name: "Start Game", exact: true }).click();
     await page.waitForTimeout(600);
     const result = await page.evaluate(async () => {
       const app = (window as any).nuclearWar,
@@ -96,7 +96,7 @@ test("logical sprite corners project correctly and pointer mapping reverses the 
   page,
 }) => {
   await page.goto("/?debugRender=1");
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   await page.waitForTimeout(500);
   await expect(page.locator("[data-render-diagnostics]")).toBeVisible();
   const result = await page.evaluate(async () => {

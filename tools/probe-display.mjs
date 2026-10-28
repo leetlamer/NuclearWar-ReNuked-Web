@@ -9,7 +9,7 @@ for (const dpr of [1, 1.25, 2]) {
   });
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:5173/");
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   await page.waitForTimeout(700);
   const probe = await page.evaluate(() => {
     const app = window.nuclearWar,

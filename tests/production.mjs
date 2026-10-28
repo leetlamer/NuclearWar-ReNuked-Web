@@ -12,7 +12,21 @@ try {
   await page.goto(
     "http://127.0.0.1:4173/NuclearWar-ReNuked-Web/?debugRender=1",
   );
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page
+    .locator("#load-status")
+    .filter({ hasText: "Ready to Play — Click Start Game" })
+    .waitFor();
+  assert.equal(
+    await page
+      .locator("#loading-banner")
+      .evaluate((i) => i.complete && i.naturalWidth === 1983),
+    true,
+  );
+  assert.equal(
+    await page.locator("#load-progress").evaluate((p) => p.value),
+    100,
+  );
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   await page.waitForTimeout(800);
   assert.equal(
     await page.evaluate(() => window.nuclearWar.engine.status().screen),

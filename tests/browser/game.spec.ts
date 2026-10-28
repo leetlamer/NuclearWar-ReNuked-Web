@@ -5,7 +5,7 @@ test("loads actual WASM game and accepts character-selection input", async ({
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   await expect(page.locator("#loading")).toBeHidden();
   await expect
     .poll(() =>
@@ -34,7 +34,7 @@ test("selects opponents, enters game, and completes a build turn without extra a
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   const status = () =>
     page.evaluate(() => (window as any).nuclearWar.engine.status());
   await expect.poll(async () => (await status()).screen).toBe(1);
@@ -80,7 +80,7 @@ test("Three.js output is pixel-identical at native size and audio unlock/mute wo
 }) => {
   await page.setViewportSize({ width: 352, height: 500 });
   await page.goto("/");
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   await page.waitForTimeout(600);
   // Exercise a native-resolution buffer independently of responsive page chrome.
   await page.locator("#game").evaluate((element: HTMLElement) => {
@@ -147,7 +147,7 @@ test("Three.js output is pixel-identical at native size and audio unlock/mute wo
 test("persists score storage across a page reload", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("button", { name: "Start game", exact: true }),
+    page.getByRole("button", { name: "Start Game", exact: true }),
   ).toBeEnabled();
   await page.evaluate(async () => {
     const fs = (window as any).nuclearWar.engine.module.FS;
@@ -158,7 +158,7 @@ test("persists score storage across a page reload", async ({ page }) => {
   });
   await page.reload();
   await expect(
-    page.getByRole("button", { name: "Start game", exact: true }),
+    page.getByRole("button", { name: "Start Game", exact: true }),
   ).toBeEnabled();
   expect(
     await page.evaluate(() =>
@@ -173,10 +173,10 @@ test("persists score storage across a page reload", async ({ page }) => {
 test("honors mute selected before game start", async ({ page }) => {
   await page.goto("/");
   await expect(
-    page.getByRole("button", { name: "Start game", exact: true }),
+    page.getByRole("button", { name: "Start Game", exact: true }),
   ).toBeEnabled();
   await page.locator("#mute").check();
-  await page.getByRole("button", { name: "Start game", exact: true }).click();
+  await page.getByRole("button", { name: "Start Game", exact: true }).click();
   await expect
     .poll(() =>
       page.evaluate(() =>

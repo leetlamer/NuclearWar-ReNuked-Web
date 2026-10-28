@@ -58,3 +58,11 @@ The master branding PNG, ICO and ICNS are retained as copied provenance; the web
 favicon uses the 64px PNG and the preserved SDL window setup reads the 256px PNG.
 They do not replace original in-game artwork. Frame rectangles/timing remain in
 `wasm/src/rendering/animations` and `assets/data/animations.json`.
+
+
+## Official browser loading banner
+
+`assets/branding/nuclear-war-renuked-banner.png` — supplied PNG,1983×793, unchanged
+SHA-256 `68fc5ac1a54999d209615113de05f8593d007065f71da4191c75305c17ab07ca`.
+Loaded and decoded separately through a Vite-base-relative URL; excluded from the
+Wasm .data package. No artwork generation or conversion was performed.

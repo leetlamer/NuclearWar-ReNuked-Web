@@ -23,13 +23,17 @@ struct LaunchOptions {
     std::string smoke, fixture, session_fixture, city_trace, mood_trace;
     std::size_t replay_actor = 4;
     Word replay_target = 0, replay_city = 2;
+    bool browser_realtime=false;
+    std::string browser_speech;
     bool restart_test = false;
     bool propaganda_auto_test = false, console_speech_test = false, title_selection_test = false,
          smoke_prepare = false, debug_hitboxes = false;
     bool parse(int argc, char **argv) {
         for (int i = 1; i < argc; ++i) {
             std::string s = argv[i];
-            if (s == "--propaganda-dismiss-ms" && i + 1 < argc) {
+            if(s=="--browser-realtime") browser_realtime=true;
+            else if(s=="--browser-speech" && i+1<argc) browser_speech=argv[++i];
+            else if (s == "--propaganda-dismiss-ms" && i + 1 < argc) {
                 propaganda_dismiss_ms = std::stoul(argv[++i]);
                 if (propaganda_dismiss_ms < 50 || propaganda_dismiss_ms > 2000)
                     throw std::runtime_error("dismiss50..2000ms");

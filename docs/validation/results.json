@@ -7,7 +7,7 @@
   "node_parity_tests": "3/3 passed",
   "state_records": 2173,
   "trace_byte_identical": true,
-  "browser_checks": "138/138 passed after SDL HiDPI coordinate correction",
+  "browser_checks": "216/216 passed after speech/playback/loading improvements",
   "browser_projects": [
     "Chromium",
     "installed Google Chrome",
@@ -20,11 +20,12 @@
   "edge": "not installed; untested",
   "production_subpath": "passed Wasm, assets, game start and audio; no page/network errors",
   "static_archive": "build/nuclear-war-renuked-web-static.zip",
-  "archive_sha256": "f82c71c3a73091c56f5e29acffda97222b6fd69e11b704c1660b5494adac2216",
-  "archive_bytes": 14005732,
-  "wasm_sha256": "17e74c74eaed4078625f9b70379f2876beef4e1a835ea5b4c2e707f315db5751",
+  "archive_sha256": "4c38b563f857f93047ec76afcaac03c33312771adb9a6ecb59cbe7d0b2d82813",
+  "archive_bytes": 17154948,
+  "wasm_sha256": "a6def912bb00dc4cdcc05c97aa95ca5565ce64d19643495450c8bc5223450aa2",
   "published": false,
   "shutdown": false,
   "viewport_validation": "docs/validation/viewport-results.json",
-  "coordinate_validation": "docs/validation/display-coordinates/results.json"
+  "coordinate_validation": "docs/validation/display-coordinates/results.json",
+  "four_improvements_validation": "docs/validation/four-improvements/results.json"
 }

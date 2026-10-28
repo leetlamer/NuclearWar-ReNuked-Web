@@ -182,7 +182,7 @@
   {
     "desktop": "src/platform/application.cpp",
     "web": "wasm/src/platform/application.cpp",
-    "sha256": "055b7e1f7fbf6da45d5aa6885835f854b71ea8ebafbe007373aade36fdb0d42f",
+    "sha256": "4d2f19e254a9495d4f06f6adfa5ff976f3ad5837567609815ee4d3d3f4238e18",
     "unchanged": false
   },
   {
@@ -194,8 +194,8 @@
   {
     "desktop": "src/platform/launch_options.hpp",
     "web": "wasm/src/platform/launch_options.hpp",
-    "sha256": "59242b8a15fb5d3530e826d743c0b80b1e25fc4018c4d517a6e804ed8ba337cf",
-    "unchanged": true
+    "sha256": "920a63a55a65c91f9f7b1587e760f57b5fa7ab3b8f28289e014ba9a838604304",
+    "unchanged": false
   },
   {
     "desktop": "src/platform/mood_diagnostics.hpp",
@@ -260,7 +260,7 @@
   {
     "desktop": "src/rendering/renderer.hpp",
     "web": "wasm/src/rendering/renderer.hpp",
-    "sha256": "22bc4923b58aec14f07277a22e2d197e9ed1b35fe2736484ec2891b127780c4c",
+    "sha256": "f534c6e7486d06a9009c20e2d561f875d0e76edea2e2494455796c00124c0496",
     "unchanged": false
   },
   {
@@ -452,8 +452,8 @@
   {
     "desktop": "tests/support/replay_scene_setup.inc",
     "web": "wasm/tests/support/replay_scene_setup.inc",
-    "sha256": "da500b84519598fc26ae958e30201e71b806933c12ce5b1f053e4514417ec11e",
-    "unchanged": true
+    "sha256": "824fdc70086c158c6236216b73afec9110d181eb0bb1e134aeaf3fa9711a238f",
+    "unchanged": false
   },
   {
     "desktop": "tests/support/replay_session_setup.inc",

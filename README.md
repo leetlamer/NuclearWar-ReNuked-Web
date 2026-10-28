@@ -17,7 +17,7 @@ npm run build:wasm
 npm run dev
 ```
 
-Open the printed local URL and press **Start game** to unlock audio. Click four
+Open the printed local URL and press **Start Game** to unlock audio. Click four
 opponents, then the title banner to begin (or let the original selection fill the
 remaining slots). Original controls and game text are preserved. Short clicks skip
 eligible action movement; holding the mouse beyond 200 ms plays it at 1.5×. A fresh
@@ -41,3 +41,10 @@ for third-party artwork is implied by this port.
 Rendering diagnostics: in development, open `/?debugRender=1`. The verified HiDPI
 source-framebuffer correction and before/after captures are documented in
 [DISPLAY_COORDINATE_FIX.md](docs/DISPLAY_COORDINATE_FIX.md).
+
+
+The loading screen now reports real resource/task progress and displays the supplied
+official banner. It waits at “Ready to Play — Click Start Game” rather than starting
+automatically. See [FOUR_BROWSER_IMPROVEMENTS.md](docs/FOUR_BROWSER_IMPROVEMENTS.md)
+for the speech-font and presentation-clock corrections, measured hold timing,
+loading weights, failure recovery and validation evidence.
