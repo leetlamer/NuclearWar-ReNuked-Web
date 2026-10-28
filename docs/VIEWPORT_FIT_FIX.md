@@ -78,3 +78,7 @@ parity tests passed 3/3. The production build and static-subpath startup passed.
 All 168 desktop tracked files and Git state remain unchanged. This patch does not
 modify GameReverse. Representative main-game screenshots are retained under
 `docs/validation/viewport-1280x720.png` and `viewport-240x640.png`.
+
+Follow-up: the HiDPI source-framebuffer content defect was not detected by the
+layout-only DPR checks above. See [DISPLAY_COORDINATE_FIX.md](DISPLAY_COORDINATE_FIX.md)
+for the actual SDL framebuffer fix and high-DPI native/GPU pixel comparisons.

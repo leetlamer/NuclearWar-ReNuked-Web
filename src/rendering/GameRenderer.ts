@@ -1,12 +1,19 @@
 import * as THREE from "three";
-import { contentBounds } from "./viewport";
+import { contentBounds, GAME_WIDTH, GAME_HEIGHT } from "./viewport";
 /** The preserved C++ compositor owns sprite coordinates and animation sequencing. */
 export class GameRenderer {
   private renderer: THREE.WebGLRenderer;
   private pixelRatio = 0;
   private texture: THREE.CanvasTexture;
   private scene = new THREE.Scene();
-  private camera = new THREE.OrthographicCamera(-160, 160, 100, -100, 0.1, 10);
+  private camera = new THREE.OrthographicCamera(
+    -GAME_WIDTH / 2,
+    GAME_WIDTH / 2,
+    GAME_HEIGHT / 2,
+    -GAME_HEIGHT / 2,
+    0.1,
+    10,
+  );
   constructor(
     private canvas: HTMLCanvasElement,
     source: HTMLCanvasElement,
@@ -25,7 +32,7 @@ export class GameRenderer {
     this.camera.position.z = 1;
     this.scene.add(
       new THREE.Mesh(
-        new THREE.PlaneGeometry(320, 200),
+        new THREE.PlaneGeometry(GAME_WIDTH, GAME_HEIGHT),
         new THREE.MeshBasicMaterial({ map: this.texture, toneMapped: false }),
       ),
     );
@@ -33,6 +40,49 @@ export class GameRenderer {
     window.addEventListener("resize", () => this.resize());
     window.visualViewport?.addEventListener("resize", () => this.resize());
     this.resize();
+    if (
+      import.meta.env.DEV &&
+      new URLSearchParams(location.search).has("debugRender")
+    ) {
+      void import("./RenderDiagnostics").then(({ attachDiagnostics }) =>
+        attachDiagnostics(canvas, () => this.diagnostics()),
+      );
+    }
+  }
+  diagnostics() {
+    if (!import.meta.env.DEV) return null;
+    const css = this.canvas.getBoundingClientRect();
+    const viewport = new THREE.Vector4();
+    this.renderer.getCurrentViewport(viewport);
+    const camera = this.camera;
+    return {
+      css: { width: css.width, height: css.height },
+      buffer: { width: this.canvas.width, height: this.canvas.height },
+      source: {
+        width: this.texture.image.width,
+        height: this.texture.image.height,
+      },
+      dpr: devicePixelRatio,
+      fitScale: Math.min(css.width / GAME_WIDTH, css.height / GAME_HEIGHT),
+      active: contentBounds(css.width, css.height),
+      viewport: viewport.toArray(),
+      camera: {
+        left: camera.left,
+        right: camera.right,
+        top: camera.top,
+        bottom: camera.bottom,
+        zoom: camera.zoom,
+        position: camera.position.toArray(),
+      },
+      scene: {
+        position: this.scene.position.toArray(),
+        scale: this.scene.scale.toArray(),
+      },
+      mesh: this.scene.children.map((x) => ({
+        position: x.position.toArray(),
+        scale: x.scale.toArray(),
+      })),
+    };
   }
   private resize() {
     const r = this.canvas.getBoundingClientRect();

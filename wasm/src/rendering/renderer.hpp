@@ -141,9 +141,11 @@ class Renderer {
     }
     Renderer() {
         SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+        // This is a logical-pixel compositor, not the visible browser window.
+        // HiDPI here scales SDL's framebuffer before Three.js applies display DPI,
+        // cropping the image copied into the fixed 320x200 source canvas.
         window = SDL_CreateWindow("Nuclear War: Re-Nuked", SDL_WINDOWPOS_CENTERED,
-                                  SDL_WINDOWPOS_CENTERED, 960, 600,
-                                  SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI);
+                                  SDL_WINDOWPOS_CENTERED, 320, 200, 0);
         if (!window)
             throw std::runtime_error(SDL_GetError());
         owned_window_.reset(window);

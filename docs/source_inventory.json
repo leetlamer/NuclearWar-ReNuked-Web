@@ -260,7 +260,7 @@
   {
     "desktop": "src/rendering/renderer.hpp",
     "web": "wasm/src/rendering/renderer.hpp",
-    "sha256": "0e98d3ceedeaf9404b9d441d0d0d23f7489a5a6820cacfefdf7df9dc8c00191c",
+    "sha256": "22bc4923b58aec14f07277a22e2d197e9ed1b35fe2736484ec2891b127780c4c",
     "unchanged": false
   },
   {

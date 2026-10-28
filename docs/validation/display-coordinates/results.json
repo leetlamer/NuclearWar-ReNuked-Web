@@ -1,0 +1,55 @@
+{
+  "root_cause": "SDL web compositor retained desktop RESIZABLE and ALLOW_HIGHDPI flags; DPR-scaled surface clipped into 320x200 source canvas before Three.js upload",
+  "source_before_dpr2": [
+    320,
+    200
+  ],
+  "surface_before_dpr2": [
+    640,
+    400
+  ],
+  "source_and_surface_after": [
+    320,
+    200
+  ],
+  "browser_checks": "138/138 passed",
+  "browsers": [
+    "Chromium",
+    "installed Chrome",
+    "Playwright WebKit"
+  ],
+  "native_suites": "10/10 passed",
+  "wasm_suites": "10/10 passed",
+  "parity_tests": "3/3 passed",
+  "desktop_trace_records": 2173,
+  "title_desktop_nonanimated_pixels_compared": 53760,
+  "desktop_rgb_differences": 0,
+  "gpu_source_rgb_differences": 0,
+  "test_dpr": [
+    1,
+    1.25,
+    2
+  ],
+  "highdpi_title_viewports": [
+    [
+      1920,
+      1080
+    ],
+    [
+      1366,
+      768
+    ],
+    [
+      1280,
+      720
+    ],
+    [
+      800,
+      450
+    ]
+  ],
+  "main_dpr2_rgb_differences": 0,
+  "production_debug_overlay": "absent; checked with ?debugRender=1",
+  "desktop_tracked_files": "168 unchanged; Git unchanged",
+  "deployed": false
+}

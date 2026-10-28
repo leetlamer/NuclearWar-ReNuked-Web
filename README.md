@@ -37,3 +37,7 @@ Do not open index.html using file://; use an HTTP server.
 The desktop project and GameReverse remain separate and unchanged. This repository
 was not published. Original game assets/text are retained; no new licensing grant
 for third-party artwork is implied by this port.
+
+Rendering diagnostics: in development, open `/?debugRender=1`. The verified HiDPI
+source-framebuffer correction and before/after captures are documented in
+[DISPLAY_COORDINATE_FIX.md](docs/DISPLAY_COORDINATE_FIX.md).

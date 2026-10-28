@@ -1,0 +1,13 @@
+{
+  "source": "desktop .migration/final_native_frames/selection_pre.bmp",
+  "source_sha256": "748dd1ec65e72040419b790880754bc5eb379a880a2aed52b42f9ec7b89c7441",
+  "source_size": [
+    1920,
+    1200
+  ],
+  "output_size": [
+    320,
+    200
+  ],
+  "conversion": "center of each exact 6x6 nearest-neighbor pixel block; BGR to RGBA; no artwork edits"
+}

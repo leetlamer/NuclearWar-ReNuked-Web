@@ -9,13 +9,16 @@ try {
   page.on("response", (r) => {
     if (r.status() >= 400) missing.push(r.url());
   });
-  await page.goto("http://127.0.0.1:4173/NuclearWar-ReNuked-Web/");
+  await page.goto(
+    "http://127.0.0.1:4173/NuclearWar-ReNuked-Web/?debugRender=1",
+  );
   await page.getByRole("button", { name: "Start game", exact: true }).click();
   await page.waitForTimeout(800);
   assert.equal(
     await page.evaluate(() => window.nuclearWar.engine.status().screen),
     1,
   );
+  assert.equal(await page.locator("[data-render-diagnostics]").count(), 0);
   assert.deepEqual(errors, []);
   assert.deepEqual(missing, []);
   const r = await page.locator("#screen").boundingBox();

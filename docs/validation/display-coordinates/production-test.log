@@ -1,0 +1,2 @@
+Production static build: http://127.0.0.1:4173/NuclearWar-ReNuked-Web/
+PASS static production subpath: Wasm/data/assets loaded, character selection, game start, Web Audio running, no page/network errors

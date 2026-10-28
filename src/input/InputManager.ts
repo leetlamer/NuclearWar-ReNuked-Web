@@ -1,5 +1,9 @@
 import type { GameEngine } from "../engine/GameEngine";
-import { contentBounds } from "../rendering/viewport";
+import {
+  displayToLogical,
+  GAME_WIDTH,
+  GAME_HEIGHT,
+} from "../rendering/viewport";
 import type { AudioManager } from "../audio/AudioManager";
 export class InputManager {
   constructor(
@@ -8,12 +12,14 @@ export class InputManager {
     audio: AudioManager,
   ) {
     const point = (e: PointerEvent) => {
-      const r = canvas.getBoundingClientRect(),
-        v = contentBounds(r.width, r.height);
-      return [
-        Math.floor(((e.clientX - r.left - v.x) * 320) / v.width),
-        Math.floor(((e.clientY - r.top - v.y) * 200) / v.height),
-      ];
+      const r = canvas.getBoundingClientRect();
+      const p = displayToLogical(
+        r.width,
+        r.height,
+        e.clientX - r.left,
+        e.clientY - r.top,
+      );
+      return [p.x, p.y];
     };
     canvas.addEventListener("pointerdown", (e) => {
       if (e.button !== 0) return;
@@ -22,7 +28,8 @@ export class InputManager {
       canvas.setPointerCapture(e.pointerId);
       void audio.unlock();
       const [x, y] = point(e);
-      if (x >= 0 && x < 320 && y >= 0 && y < 200) engine.input(1, x, y);
+      if (x >= 0 && x < GAME_WIDTH && y >= 0 && y < GAME_HEIGHT)
+        engine.input(1, x, y);
     });
     canvas.addEventListener("pointerup", (e) => {
       if (e.button !== 0) return;
