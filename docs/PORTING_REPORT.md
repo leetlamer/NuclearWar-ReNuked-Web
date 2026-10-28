@@ -109,3 +109,41 @@ match the original Amiga executable.
 The adapter disables implicit SDL Asyncify yields and explicitly yields at the
 frame boundary; this keeps the copied frame's event/render/completion ordering in
 one place while giving control back to the browser.
+
+## Final executed validation summary
+
+| Check | Result |
+|---|---|
+| Native portable C++ suites | 10/10 passed |
+| Wasm/Node versions of those suites | 10/10 passed |
+| Native Debug UBSan portable suites | 10/10 passed |
+| Node source/asset/trace parity tests | 3/3 passed |
+| Deterministic desktop/native/Wasm trace | 2,173 records byte-identical |
+| Final browser matrix | 81/81 passed: 27 checks each in Chromium, installed Chrome and Playwright WebKit |
+| Native-size Three.js pixel readback | RGB exact at 320×200 on all three browser projects |
+| Real browser audio API | Context running after gesture; original mute/unmute flags verified |
+| Two restarts / three sessions | Fresh state/RNG and score preservation; actual high-score bytes survive page reload |
+| Static repository-subpath deployment | Wasm/data/assets/game start/Web Audio passed with no page/network errors |
+| Desktop tracked source/assets/Git state | 168 files and Git state unchanged |
+
+Early development runs caught exception/stack/audio-accessor issues and recorded
+transient Chrome/WebKit failures while frontend files were being changed. Those
+runs were not called passing. The final complete clean run passed all 81 checks;
+the initial Chrome revenge case also passed three isolated repeats. Native speaker
+listening, a full manual playthrough, actual Safari and Edge remain unverified.
+
+Firefox could not launch its test profile on this host, even with a local temporary
+directory. This is a tooling failure before the page loads, not a claimed browser
+compatibility pass. Safari's WebDriver explicitly rejected the session because
+Allow remote automation is disabled; no settings were changed to bypass it.
+Playwright WebKit is independently tested and must not be mislabeled as Safari.
+
+Tested dependencies from package-lock: Three.js 0.180.0, Vite 7.3.7,
+TypeScript 5.9.3, Playwright 1.64.1; Emscripten 4.0.23 / SDL 2.32.8 port.
+The machine-readable final results, log files, reference digest, preservation
+qualification and screenshots are under `docs/validation/`.
+
+`build/nuclear-war-renuked-web-static.zip` contains the verified static deployment
+artifact, with relative file paths and every entry compared back to dist. This is
+a local artifact only. A source checkpoint records tracked files and the tested
+static build separately. No GitHub remote or published repository was created.

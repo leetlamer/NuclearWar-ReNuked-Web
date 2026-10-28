@@ -1,0 +1,101 @@
+[WebServer] (node:4356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:4358) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [firefox] › tests/browser/game.spec.ts:2:1 › loads actual WASM game and accepts character-selection input (0ms)
+(node:4361) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [firefox] › tests/browser/game.spec.ts:13:1 › selects opponents, enters game, and completes a build turn without extra acknowledgement (0ms)
+(node:4386) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 [firefox] › tests/browser/game.spec.ts:38:1 › Three.js output is pixel-identical at native size and audio unlock/mute works (0ms)
+
+
+  1) [firefox] › tests/browser/game.spec.ts:2:1 › loads actual WASM game and accepts character-selection input 
+
+    Error: browserType.launch: Failed to launch the browser process.
+    Browser logs:
+
+    <launching> /Users/zellcorp/Library/Caches/ms-playwright/firefox-1555/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /Users/zellcorp/NuclearWar-ReNuked-Web/.toolchain/browser-tmp/playwright_firefoxdev_profile-fePJSN -juggler-pipe -silent
+    <launched> pid=4359
+    [pid=4359][err] *** You are running in headless mode.
+    [pid=4359][err] Could not find profile folder.
+    [pid=4359] <process did exit: exitCode=1, signal=null>
+    [pid=4359] starting temporary directories cleanup
+    Call log:
+      - <launching> /Users/zellcorp/Library/Caches/ms-playwright/firefox-1555/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /Users/zellcorp/NuclearWar-ReNuked-Web/.toolchain/browser-tmp/playwright_firefoxdev_profile-fePJSN -juggler-pipe -silent
+      - <launched> pid=4359
+      - [pid=4359][err] *** You are running in headless mode.
+      - [pid=4359][err] Could not find profile folder.
+      - [pid=4359] <process did exit: exitCode=1, signal=null>
+      - [pid=4359] starting temporary directories cleanup
+      - [pid=4359] <gracefully close start>
+      - [pid=4359] <kill>
+      - [pid=4359] <skipped force kill spawnedProcess.killed=false processClosed=true>
+      - [pid=4359] finished temporary directories cleanup
+      - [pid=4359] <gracefully close end>
+
+
+    Error Context: test-results/game-loads-actual-WASM-gam-bc607-s-character-selection-input-firefox/error-context.md
+
+  2) [firefox] › tests/browser/game.spec.ts:13:1 › selects opponents, enters game, and completes a build turn without extra acknowledgement 
+
+    Error: browserType.launch: Failed to launch the browser process.
+    Browser logs:
+
+    <launching> /Users/zellcorp/Library/Caches/ms-playwright/firefox-1555/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /Users/zellcorp/NuclearWar-ReNuked-Web/.toolchain/browser-tmp/playwright_firefoxdev_profile-ZQ3mAZ -juggler-pipe -silent
+    <launched> pid=4384
+    [pid=4384][err] *** You are running in headless mode.
+    [pid=4384][err] Could not find profile folder.
+    [pid=4384] <process did exit: exitCode=1, signal=null>
+    [pid=4384] starting temporary directories cleanup
+    Call log:
+      - <launching> /Users/zellcorp/Library/Caches/ms-playwright/firefox-1555/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /Users/zellcorp/NuclearWar-ReNuked-Web/.toolchain/browser-tmp/playwright_firefoxdev_profile-ZQ3mAZ -juggler-pipe -silent
+      - <launched> pid=4384
+      - [pid=4384][err] *** You are running in headless mode.
+      - [pid=4384][err] Could not find profile folder.
+      - [pid=4384] <process did exit: exitCode=1, signal=null>
+      - [pid=4384] starting temporary directories cleanup
+      - [pid=4384] <gracefully close start>
+      - [pid=4384] <kill>
+      - [pid=4384] <skipped force kill spawnedProcess.killed=false processClosed=true>
+      - [pid=4384] finished temporary directories cleanup
+      - [pid=4384] <gracefully close end>
+
+
+    Error Context: test-results/game-selects-opponents-ent-e31ee-thout-extra-acknowledgement-firefox/error-context.md
+
+  3) [firefox] › tests/browser/game.spec.ts:38:1 › Three.js output is pixel-identical at native size and audio unlock/mute works 
+
+    Error: browserType.launch: Failed to launch the browser process.
+    Browser logs:
+
+    <launching> /Users/zellcorp/Library/Caches/ms-playwright/firefox-1555/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /Users/zellcorp/NuclearWar-ReNuked-Web/.toolchain/browser-tmp/playwright_firefoxdev_profile-FDia3a -juggler-pipe -silent
+    <launched> pid=4460
+    [pid=4460][err] *** You are running in headless mode.
+    [pid=4460][err] Could not find profile folder.
+    [pid=4460] <process did exit: exitCode=1, signal=null>
+    [pid=4460] starting temporary directories cleanup
+    Call log:
+      - <launching> /Users/zellcorp/Library/Caches/ms-playwright/firefox-1555/firefox/Nightly.app/Contents/MacOS/firefox -no-remote -headless -profile /Users/zellcorp/NuclearWar-ReNuked-Web/.toolchain/browser-tmp/playwright_firefoxdev_profile-FDia3a -juggler-pipe -silent
+      - <launched> pid=4460
+      - [pid=4460][err] *** You are running in headless mode.
+      - [pid=4460][err] Could not find profile folder.
+      - [pid=4460] <process did exit: exitCode=1, signal=null>
+      - [pid=4460] starting temporary directories cleanup
+      - [pid=4460] <gracefully close start>
+      - [pid=4460] <kill>
+      - [pid=4460] <skipped force kill spawnedProcess.killed=false processClosed=true>
+      - [pid=4460] finished temporary directories cleanup
+      - [pid=4460] <gracefully close end>
+
+
+    Error Context: test-results/game-Three-js-output-is-pi-a6995-and-audio-unlock-mute-works-firefox/error-context.md
+
+  3 failed
+    [firefox] › tests/browser/game.spec.ts:2:1 › loads actual WASM game and accepts character-selection input 
+    [firefox] › tests/browser/game.spec.ts:13:1 › selects opponents, enters game, and completes a build turn without extra acknowledgement 
+    [firefox] › tests/browser/game.spec.ts:38:1 › Three.js output is pixel-identical at native size and audio unlock/mute works 

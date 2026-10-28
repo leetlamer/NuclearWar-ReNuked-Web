@@ -10,7 +10,8 @@ SDL installation. WebGL2, WebAssembly, Canvas 2D and Web Audio are required.
 ```sh
 npm install
 sh tools/bootstrap-emsdk.sh
-npm run dev                 # after the first npm run build:wasm
+npm run build:wasm
+npm run dev
 npm run build               # recompiles Wasm, type-checks, builds static dist/
 npm run preview
 ```

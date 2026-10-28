@@ -1,0 +1,25 @@
+Test project /Users/zellcorp/NuclearWar-ReNuked-Web/build/native-ubsan
+      Start  1: engine_tests
+ 1/10 Test  #1: engine_tests .....................   Passed    0.31 sec
+      Start  2: ending_tests
+ 2/10 Test  #2: ending_tests .....................   Passed    0.24 sec
+      Start  3: resolver_marker_tests
+ 3/10 Test  #3: resolver_marker_tests ............   Passed    0.24 sec
+      Start  4: round_plan_tests
+ 4/10 Test  #4: round_plan_tests .................   Passed    0.23 sec
+      Start  5: session_tests
+ 5/10 Test  #5: session_tests ....................   Passed    0.25 sec
+      Start  6: resolver_tests
+ 6/10 Test  #6: resolver_tests ...................   Passed    0.24 sec
+      Start  7: missile_tests
+ 7/10 Test  #7: missile_tests ....................   Passed    0.24 sec
+      Start  8: player_tests
+ 8/10 Test  #8: player_tests .....................   Passed    0.30 sec
+      Start  9: revenge_tests
+ 9/10 Test  #9: revenge_tests ....................   Passed    0.25 sec
+      Start 10: text_tests
+10/10 Test #10: text_tests .......................   Passed    0.27 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =   2.57 sec

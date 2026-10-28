@@ -1,0 +1,95 @@
+
+> nuclear-war-renuked-web@1.0.0 test:engine
+> node tools/test-engine.mjs
+
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/zellcorp/NuclearWar-ReNuked-Web/build/native
+[ 38%] Built target nuclear_game
+[ 44%] Built target ending_tests
+[ 50%] Built target engine_tests
+[ 55%] Built target resolver_marker_tests
+[ 61%] Built target session_tests
+[ 66%] Built target resolver_tests
+[ 72%] Built target round_plan_tests
+[ 77%] Built target missile_tests
+[ 83%] Built target player_tests
+[ 88%] Built target revenge_tests
+[ 94%] Built target state_trace
+[100%] Built target text_tests
+Test project /Users/zellcorp/NuclearWar-ReNuked-Web/build/native
+      Start  1: engine_tests
+ 1/10 Test  #1: engine_tests .....................   Passed    0.00 sec
+      Start  2: ending_tests
+ 2/10 Test  #2: ending_tests .....................   Passed    0.00 sec
+      Start  3: resolver_marker_tests
+ 3/10 Test  #3: resolver_marker_tests ............   Passed    0.00 sec
+      Start  4: round_plan_tests
+ 4/10 Test  #4: round_plan_tests .................   Passed    0.00 sec
+      Start  5: session_tests
+ 5/10 Test  #5: session_tests ....................   Passed    0.00 sec
+      Start  6: resolver_tests
+ 6/10 Test  #6: resolver_tests ...................   Passed    0.00 sec
+      Start  7: missile_tests
+ 7/10 Test  #7: missile_tests ....................   Passed    0.00 sec
+      Start  8: player_tests
+ 8/10 Test  #8: player_tests .....................   Passed    0.00 sec
+      Start  9: revenge_tests
+ 9/10 Test  #9: revenge_tests ....................   Passed    0.00 sec
+      Start 10: text_tests
+10/10 Test #10: text_tests .......................   Passed    0.00 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =   0.02 sec
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/zellcorp/NuclearWar-ReNuked-Web/build/wasm-tests
+[ 38%] Built target nuclear_game
+[ 41%] Linking CXX executable engine_tests.cjs
+[ 44%] Linking CXX executable resolver_tests.cjs
+[ 47%] Linking CXX executable ending_tests.cjs
+[ 50%] Linking CXX executable resolver_marker_tests.cjs
+[ 52%] Linking CXX executable session_tests.cjs
+[ 55%] Linking CXX executable round_plan_tests.cjs
+[ 58%] Built target round_plan_tests
+[ 61%] Built target resolver_tests
+[ 63%] Built target resolver_marker_tests
+[ 66%] Built target ending_tests
+[ 69%] Linking CXX executable missile_tests.cjs
+[ 72%] Linking CXX executable revenge_tests.cjs
+[ 75%] Linking CXX executable player_tests.cjs
+[ 77%] Linking CXX executable text_tests.cjs
+[ 80%] Built target session_tests
+[ 83%] Linking CXX executable state_trace.cjs
+[ 86%] Built target missile_tests
+[ 88%] Built target state_trace
+[ 91%] Built target revenge_tests
+[ 94%] Built target text_tests
+[ 97%] Built target engine_tests
+[100%] Built target player_tests
+Test project /Users/zellcorp/NuclearWar-ReNuked-Web/build/wasm-tests
+      Start  1: engine_tests
+ 1/10 Test  #1: engine_tests .....................   Passed    0.18 sec
+      Start  2: ending_tests
+ 2/10 Test  #2: ending_tests .....................   Passed    0.06 sec
+      Start  3: resolver_marker_tests
+ 3/10 Test  #3: resolver_marker_tests ............   Passed    0.06 sec
+      Start  4: round_plan_tests
+ 4/10 Test  #4: round_plan_tests .................   Passed    0.06 sec
+      Start  5: session_tests
+ 5/10 Test  #5: session_tests ....................   Passed    0.07 sec
+      Start  6: resolver_tests
+ 6/10 Test  #6: resolver_tests ...................   Passed    0.06 sec
+      Start  7: missile_tests
+ 7/10 Test  #7: missile_tests ....................   Passed    0.06 sec
+      Start  8: player_tests
+ 8/10 Test  #8: player_tests .....................   Passed    0.31 sec
+      Start  9: revenge_tests
+ 9/10 Test  #9: revenge_tests ....................   Passed    0.09 sec
+      Start 10: text_tests
+10/10 Test #10: text_tests .......................   Passed    0.07 sec
+
+100% tests passed out of 10
+
+Total Test time (real) =   1.03 sec

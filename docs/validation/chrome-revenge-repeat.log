@@ -1,0 +1,16 @@
+[WebServer] (node:5985) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 3 tests using 1 worker
+
+(node:5987) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chrome] › tests/browser/replays.spec.ts:24:46 › revenge-human preserves automatic attacks during normal playback (3.3s)
+(node:6005) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [chrome] › tests/browser/replays.spec.ts:24:46 › revenge-human preserves automatic attacks during normal playback (3.2s)
+(node:6021) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [chrome] › tests/browser/replays.spec.ts:24:46 › revenge-human preserves automatic attacks during normal playback (3.2s)
+
+  3 passed (11.4s)

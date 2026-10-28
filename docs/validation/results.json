@@ -1,0 +1,28 @@
+{
+  "desktop_preservation": "168 tracked files and Git state unchanged",
+  "gamereverse_historical_snapshot": "133940 files; only .DS_Store and port/.DS_Store metadata differences; no source/asset changes found",
+  "cpp_native_suites": "10/10 passed",
+  "cpp_wasm_suites": "10/10 passed",
+  "cpp_native_ubsan_suites": "10/10 passed",
+  "node_parity_tests": "3/3 passed",
+  "state_records": 2173,
+  "trace_byte_identical": true,
+  "browser_checks": "81/81 passed",
+  "browser_projects": [
+    "Chromium",
+    "installed Google Chrome",
+    "Playwright WebKit"
+  ],
+  "native_pixel_readback": "320x200 RGB exact on all three browser projects",
+  "browser_audio": "Web Audio running, native mute/unmute flags verified; no listening comparison",
+  "firefox": "launcher failed to find temporary profile before loading game",
+  "safari": "WebDriver unavailable: Allow remote automation disabled; Safari itself not tested",
+  "edge": "not installed; untested",
+  "production_subpath": "passed Wasm, assets, game start and audio; no page/network errors",
+  "static_archive": "build/nuclear-war-renuked-web-static.zip",
+  "archive_sha256": "2c885313f6e4fc44d4f76b3a58bc9ab48023ea099c0e4708259f7cddb8f40dd2",
+  "archive_bytes": 14005545,
+  "wasm_sha256": "be6f9b0a7da539ad653d5946e6478094b701248f3f0caf24a3968967915f7e53",
+  "published": false,
+  "shutdown": false
+}
