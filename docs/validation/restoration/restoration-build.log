@@ -1,0 +1,17 @@
+
+> nuclear-war-renuked-web@1.0.0 build
+> npm run build:wasm && tsc --noEmit && vite build
+
+
+> nuclear-war-renuked-web@1.0.0 build:wasm
+> node tools/build-wasm.mjs
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 14 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   2.00 kB │ gzip:   0.85 kB
+dist/assets/index-u9I-066M.css    1.98 kB │ gzip:   0.91 kB
+dist/assets/index-_pj7jwOc.js   476.25 kB │ gzip: 120.24 kB
+✓ built in 296ms

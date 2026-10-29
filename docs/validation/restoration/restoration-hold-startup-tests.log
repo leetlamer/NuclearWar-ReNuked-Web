@@ -1,0 +1,35 @@
+
+> nuclear-war-renuked-web@1.0.0 test:browser
+> playwright test --project=chromium tests/browser/hold-timing.spec.ts tests/browser/startup.spec.ts
+
+[WebServer] (node:8361) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 1 worker
+
+(node:8366) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TIMING speech {"normal":2.999,"held":2.059,"thresholdMs":200}
+  ✓   1 [chromium] › tests/browser/hold-timing.spec.ts:42:3 › speech: a 3s presentation interval takes approximately T/1.5 while held (5.9s)
+TIMING missile {"normal":3.002,"held":2.075,"thresholdMs":200}
+  ✓   2 [chromium] › tests/browser/hold-timing.spec.ts:42:3 › missile: a 3s presentation interval takes approximately T/1.5 while held (5.7s)
+TIMING bomber-attack {"normal":3.007,"held":2.071,"thresholdMs":200}
+  ✓   3 [chromium] › tests/browser/hold-timing.spec.ts:42:3 › bomber-attack: a 3s presentation interval takes approximately T/1.5 while held (5.7s)
+TIMING revenge-human {"normal":3.006,"held":2.068,"thresholdMs":200}
+  ✓   4 [chromium] › tests/browser/hold-timing.spec.ts:42:3 › revenge-human: a 3s presentation interval takes approximately T/1.5 while held (19.6s)
+  ✓   5 [chromium] › tests/browser/hold-timing.spec.ts:105:3 › hold clears on pointercancel (724ms)
+  ✓   6 [chromium] › tests/browser/hold-timing.spec.ts:105:3 › hold clears on lostpointercapture (695ms)
+  ✓   7 [chromium] › tests/browser/hold-timing.spec.ts:105:3 › hold clears on blur (696ms)
+  ✓   8 [chromium] › tests/browser/hold-timing.spec.ts:105:3 › hold clears on visibilitychange (714ms)
+  ✓   9 [chromium] › tests/browser/hold-timing.spec.ts:141:1 › holding continues across revenge attack boundaries without skipping the next attack (11.4s)
+  ✓  10 [chromium] › tests/browser/startup.spec.ts:2:1 › real resource loading gates readiness, shows supplied banner and starts only on click (373ms)
+  ✓  11 [chromium] › tests/browser/startup.spec.ts:53:3 › critical nuclearwar.data failure is visible and retry restores loading (228ms)
+  ✓  12 [chromium] › tests/browser/startup.spec.ts:53:3 › critical nuclear-war-renuked-banner.png failure is visible and retry restores loading (220ms)
+  ✓  13 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 1920x1080 (251ms)
+  ✓  14 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 1366x768 (223ms)
+  ✓  15 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 1280x720 (220ms)
+  ✓  16 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 800x450 (195ms)
+  ✓  17 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 360x640 (188ms)
+  ✓  18 [chromium] › tests/browser/startup.spec.ts:106:1 › blocked optional saved-score storage does not block readiness forever (3.4s)
+
+  18 passed (57.1s)

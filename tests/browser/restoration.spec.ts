@@ -79,6 +79,17 @@ test("all ten Earth stages precede space Hall, with original packed imagery", as
       Buffer.from(data.split(",")[1], "base64"),
     );
   await page.screenshot({ path: info.outputPath("hall-in-space.png") });
+  // The extinction Hall uses the real new-session fade/reset path, then a
+  // different roster can be chosen without inheriting old session occupancy.
+  await click(page, 160, 100);
+  await expect.poll(async () => (await status(page)).screen).toBe(1);
+  await page.waitForTimeout(900);
+  await click(page, 25, 65);
+  await click(page, 280, 65);
+  await expect.poll(async () => (await status(page)).selected).toBe(2);
+  await click(page, 150, 20);
+  await expect.poll(async () => (await status(page)).screen).toBe(2);
+  expect((await status(page)).participants).toBe(3);
 });
 test("original UFO and yellow frames descend, fire, depart and complete", async ({
   page,

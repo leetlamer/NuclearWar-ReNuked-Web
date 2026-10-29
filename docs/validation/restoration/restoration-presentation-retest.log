@@ -1,0 +1,35 @@
+
+> nuclear-war-renuked-web@1.0.0 test:browsers
+> playwright test --project=chromium --project=chrome --project=webkit tests/browser/restoration.spec.ts
+
+[WebServer] (node:9601) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 18 tests using 1 worker
+
+(node:9604) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [chromium] › tests/browser/restoration.spec.ts:15:3 › exactly 1 selected AI participate (1.2s)
+  ✓   2 [chromium] › tests/browser/restoration.spec.ts:15:3 › exactly 2 selected AI participate (1.0s)
+  ✓   3 [chromium] › tests/browser/restoration.spec.ts:15:3 › exactly 3 selected AI participate (1.1s)
+  ✓   4 [chromium] › tests/browser/restoration.spec.ts:15:3 › exactly 4 selected AI participate (1.0s)
+  ✓   5 [chromium] › tests/browser/restoration.spec.ts:43:1 › all ten Earth stages precede space Hall, with original packed imagery (3.1s)
+  ✓   6 [chromium] › tests/browser/restoration.spec.ts:83:1 › original UFO and yellow frames descend, fire, depart and complete (2.7s)
+(node:9653) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   7 [chrome] › tests/browser/restoration.spec.ts:15:3 › exactly 1 selected AI participate (1.3s)
+  ✓   8 [chrome] › tests/browser/restoration.spec.ts:15:3 › exactly 2 selected AI participate (1.1s)
+  ✓   9 [chrome] › tests/browser/restoration.spec.ts:15:3 › exactly 3 selected AI participate (1.1s)
+  ✓  10 [chrome] › tests/browser/restoration.spec.ts:15:3 › exactly 4 selected AI participate (1.1s)
+  ✓  11 [chrome] › tests/browser/restoration.spec.ts:43:1 › all ten Earth stages precede space Hall, with original packed imagery (3.2s)
+  ✓  12 [chrome] › tests/browser/restoration.spec.ts:83:1 › original UFO and yellow frames descend, fire, depart and complete (2.8s)
+(node:9695) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [webkit] › tests/browser/restoration.spec.ts:15:3 › exactly 1 selected AI participate (1.1s)
+  ✓  14 [webkit] › tests/browser/restoration.spec.ts:15:3 › exactly 2 selected AI participate (1.1s)
+  ✓  15 [webkit] › tests/browser/restoration.spec.ts:15:3 › exactly 3 selected AI participate (1.1s)
+  ✓  16 [webkit] › tests/browser/restoration.spec.ts:15:3 › exactly 4 selected AI participate (1.1s)
+  ✓  17 [webkit] › tests/browser/restoration.spec.ts:43:1 › all ten Earth stages precede space Hall, with original packed imagery (3.1s)
+  ✓  18 [webkit] › tests/browser/restoration.spec.ts:83:1 › original UFO and yellow frames descend, fire, depart and complete (2.8s)
+
+  18 passed (32.5s)
