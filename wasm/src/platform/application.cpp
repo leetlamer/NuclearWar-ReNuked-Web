@@ -117,6 +117,7 @@ int main(int argc, char **argv) {
         EndgamePresentation ending(score_path);
         ending.jump_seconds(options.victory_jump_seconds);
         VictorySoundSequence victory_sound;
+        bool extinction_sound_played = false;
         display.endgame = &ending;
         SDL_StartTextInput();
         SoundManager sound(options.audio_clock, options.rates);
@@ -415,6 +416,7 @@ int main(int argc, char **argv) {
                 ending = EndgamePresentation(score_path);
                 ending.jump_seconds(options.victory_jump_seconds);
                 victory_sound = VictorySoundSequence{};
+                extinction_sound_played = false;
                 had_action_audio = had_target_audio = had_selection_audio = false;
                 bleep_seen = player.bleep_serial();
                 show_log = false;
@@ -594,6 +596,11 @@ int main(int argc, char **argv) {
                           << " restarted=" << started << " cleanup=0\n";
                 }
             }
+            if (ending.active() && ending.winner() < 0 &&
+                extinction_stage(ending.elapsed()) >= 3 && !extinction_sound_played) {
+                extinction_sound_played = true;
+                sound.play(0xe000000000000000ull, SoundCue{"exp", 620, 4998, 64});
+            }
             if (ending.ai_victory()) {
                 unsigned previous_queue = sound.queued_bytes();
                 if (auto request = victory_sound.next(ending.elapsed(), ending.jump_seconds(),
@@ -712,6 +719,11 @@ if(!options.browser_realtime) {
                 ",\"eventIndex\":" + std::to_string(scene.index()) +
                 ",\"speech\":" + (scene.speech_visible() ? "true" : "false") +
                 ",\"selected\":" + std::to_string(player.selection().count) +
+                ",\"participants\":" + std::to_string(player.coordinator() ?
+                    std::count(player.coordinator()->data().state.participating.begin(),
+                               player.coordinator()->data().state.participating.end(), true) : 0) +
+                ",\"extinctionStage\":" + std::to_string(ending.active() && ending.winner() < 0 ? extinction_stage(ending.elapsed()) : -2) +
+                ",\"hall\":" + (ending.active() && ending.hall() ? "true" : "false") +
                 ",\"active\":" + (scene.active() ? "true" : "false") +
                 ",\"eligible\":" + (scene.input_eligible() ? "true" : "false") +
                 ",\"ending\":" + (show_log ? "true" : "false") +

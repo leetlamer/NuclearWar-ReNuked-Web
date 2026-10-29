@@ -66,7 +66,10 @@ for (const actor of [0, 1, 2, 3])
           ) as number[][];
           const atlas = JSON.parse(m.UTF8ToString(m._web_speech_font()));
           const image = new Image();
-          image.src = "/assets/fonts/original_bitmap.png";
+          image.src = new URL(
+            "assets/fonts/original_bitmap.png",
+            document.baseURI,
+          ).href;
           await image.decode();
           const fc = document.createElement("canvas");
           fc.width = 576;

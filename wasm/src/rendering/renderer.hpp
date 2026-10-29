@@ -52,7 +52,7 @@ class Renderer {
     bool preview_speaking_{};
     std::optional<State> inspection_;
     std::size_t inspection_actor_{};
-    SDL_Texture *winner_art_{}, *space_{}, *ending_{}, *start_{}, *dip_{}, *heads_{}, *world_{},
+    SDL_Texture *earth_{}, *earth_small_{}, *earth_large_{}, *winner_art_{}, *space_{}, *ending_{}, *start_{}, *dip_{}, *heads_{}, *world_{},
         *tiles_{}, *font_{}, *missiles_{}, *controls_{}, *large_{}, *large_opaque_{};
     ScrollingTextFlow main_text_;
     ConsoleTranscript console_;
@@ -163,6 +163,9 @@ class Renderer {
         SDL_RenderSetIntegerScale(renderer, SDL_TRUE);
         winner_art_ = image_texture("victory_body", "masked");
         space_ = image_texture("space_ending");
+        earth_ = image_texture("expmap");
+        earth_small_ = image_texture("smallexp");
+        earth_large_ = image_texture("bigexp");
         ending_ = image_texture("desolate_ending");
         large_ = image_texture("large_sprites", "masked");
         large_opaque_ = image_texture("large_sprites");
@@ -254,7 +257,7 @@ class Renderer {
                         auto r = portrait_rect(id);
                         tile(233, {r.x + 45, r.y + 5, 16, 16});
                     }
-                auto title = "Nuclear War - select four opponents (" +
+                auto title = "Nuclear War - select 1–4 opponents (" +
                              std::to_string(player.selection().count) + "/4); click title to begin";
                 SDL_SetWindowTitle(window, title.c_str());
             } else
@@ -264,6 +267,19 @@ class Renderer {
         }
         if (endgame && endgame->active()) {
             SDL_RenderCopy(renderer, endgame->winner() < 0 ? space_ : ending_, nullptr, nullptr);
+            if (endgame->winner() < 0 && !endgame->hall()) {
+                int stage = extinction_stage(endgame->elapsed());
+                if (stage < int(extinction_frames.size()))
+                    SDL_RenderCopy(renderer, earth_, nullptr, nullptr);
+                // Original copies accumulate on each screen buffer. Reconstruct that
+                // deterministic composition each frame rather than retaining GPU contents.
+                for (int i = 0; stage < int(extinction_frames.size()) && i <= stage; ++i) {
+                    auto frame = extinction_frames[std::size_t(i)];
+                    auto r = frame.source, d = frame.destination;
+                    copy(frame.large ? earth_large_ : earth_small_,
+                         {r.x,r.y,r.w,r.h}, {d.x,d.y,d.w,d.h});
+                }
+            }
             if (endgame->ai_victory()) {
                 auto pose = victory_pose(
                     player.coordinator()->data().state.identity[std::size_t(endgame->winner())],
@@ -330,6 +346,8 @@ class Renderer {
                                                 scene && scene->selection_blocked(),
                                                 data.human.display_actor == 0xffff);
         for (std::size_t i = 0; i < 4; ++i) {
+            if (!face_state.participating[i])
+                continue;
             auto identity = face_state.identity[i];
             auto r = portrait_rect(identity);
             int x = i < 2 ? 13 : 264, y = (i % 2) ? 154 : 5;
@@ -518,6 +536,7 @@ class Renderer {
         if (!player.human_alive() || player.ended()) {
             SDL_RenderCopy(renderer, world_, nullptr, nullptr);
             for (auto &a : display_state.actors)
+                if (display_state.participating[std::size_t(&a - display_state.actors.data())])
                 for (int city = 0; city < 5; ++city)
                     tile(city_frame(a.population[city]),
                          {int(a.city_x[city]), int(a.city_y[city]) - 1, 16, 16});
@@ -540,6 +559,7 @@ class Renderer {
             const auto state = scene->population_state();
             const auto &event = scene->event();
             for (std::size_t i = 0; i < 5; ++i)
+                if (state.participating[i])
                 for (std::size_t city = 0; city < 5; ++city) {
                     const auto &a = state.actors[i];
                     tile(event.action == 86 && i == event.target && city == event.city

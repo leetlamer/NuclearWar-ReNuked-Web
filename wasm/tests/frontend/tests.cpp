@@ -91,12 +91,48 @@ int main() {
         for (auto f : flags)
             CHECK(f == 0);
     });
-    group("vacancy fill retains duplicate draws; never substitute shuffle", [] {
-        std::array<Word, 10> flags{};
-        Rng rng(1);
-        auto c = complete_selection(flags, rng);
-        CHECK((c.identity == std::array<Word, 4>{8, 1, 3, 5}));
-        CHECK(c.fill_draws == 5 && c.assignment_draws == 4 && rng.seed() == 0xbf54bc7e);
+    group("explicit roster supports one through four opponents without filling", [] {
+        for (Word count = 1; count <= 4; ++count) {
+            Player player;
+            player.enter_selection();
+            CHECK(!player.click(110, 20));
+            for (Word id = 0; id < count; ++id) {
+                auto r = portrait_rect(id);
+                CHECK(player.click(r.x + 20, r.y + 15));
+            }
+            CHECK(player.click(110, 20));
+            const auto &state = player.coordinator()->data().state;
+            CHECK(living_actors(state) == count + 1);
+            for (Word slot = 0; slot < 4; ++slot) {
+                CHECK(state.participating[slot] == (slot < count));
+                if (slot >= count) {
+                    CHECK(!populated_cities(state.actors[slot]));
+                    CHECK(state.actors[slot].action == 88);
+                    CHECK(!player.click(slot < 2 ? 20 : 270, slot % 2 ? 160 : 10));
+                }
+            }
+            auto planned = state;
+            Rng random(123);
+            ai_turn(planned, random);
+            for (Word slot = count; slot < 4; ++slot)
+                CHECK(planned.actors[slot].action == 88);
+            for (int round = 0; round < 3 && !player.ended(); ++round) {
+                CHECK(player.command({HumanCommandKind::production, 0}));
+                CHECK(player.confirm_banner());
+                for (int step = 0; step < 40 && !player.ended() &&
+                     player.coordinator()->phase() != session::Phase::human_selection; ++step)
+                    CHECK(player.advance_turn(Word(37 + round)));
+                const auto &resolved = player.coordinator()->data().state;
+                for (Word slot = count; slot < 4; ++slot) {
+                    CHECK(!resolved.participating[slot]);
+                    CHECK(!populated_cities(resolved.actors[slot]));
+                    CHECK(resolved.actors[slot].action == 88);
+                    for (auto v : resolved.actors[slot].warheads) CHECK(v == 0);
+                    for (auto v : resolved.actors[slot].missiles) CHECK(v == 0);
+                }
+                if (player.ended()) CHECK(living_actors(resolved) <= 1);
+            }
+        }
     });
     group("setup copies verified profiles and human initialized resources", [] {
         Player p;
@@ -1385,7 +1421,7 @@ int main() {
         }
         CHECK(special_sprites(11, 4, 3.1, 80, 100).empty());
         auto alien = special_sprites(16, 4, 1, 80, 100);
-        CHECK(alien.size() == 1 && alien[0].atlas == Atlas::small && alien[0].source.y == 210);
+        CHECK(alien.size() == 2 && alien[0].atlas == Atlas::small && alien[0].source.y == 210);
     });
     group("special projectile and weight arrive at recorded target without game writes", [] {
         for (Word a : {9, 12, 13, 14}) {
@@ -2264,7 +2300,65 @@ int main() {
         EndgamePresentation empty;
         CHECK(empty.begin(none, false) && empty.winner() == -1 && !empty.rank() && !empty.saved());
         empty.tick(1);
+        CHECK(!empty.restart_ready());
+        for (int i = 0; i < 12; ++i) empty.tick(extinction_duration());
         CHECK(empty.restart_ready());
+    });
+
+    group("alien yellow frames use original atlas and finish without changing city lift", [] {
+        for (int i = 0; i < 4; ++i) {
+            double seconds = 1.0 + i * .125;
+            auto sprites = special_sprites(16, 0, seconds, 80, 80);
+            CHECK(sprites.size() == 2);
+            auto craft = sprites[0], yellow = sprites[1];
+            CHECK(yellow.source.x == 256 + i * 16 && yellow.source.y == 208);
+            CHECK(yellow.destination.x == craft.destination.x + 12);
+            CHECK(yellow.destination.y == craft.destination.y + 3);
+        }
+        CHECK(special_sprites(16, 0, 2, 80, 80, 1, {.7, 2., 2.}).size() == 1);
+        CHECK(special_sprites(16, 0, 0, 80, 80).size() == 1);
+        CHECK(special_sprites(16, 0, 3.01, 80, 80).empty());
+        auto exit = special_sprites(16, 0, 3, 80, 80);
+        CHECK(exit[0].destination.y + exit[0].destination.h < 0);
+        CHECK(special_sprites(11, 0, 1, 80, 80)[1].atlas == Atlas::big);
+    });
+
+    group("extinction counts participating roster and waits for pending presentation", [] {
+        for (Word opponents = 1; opponents <= 4; ++opponents) {
+            auto data = endgame_fixture(false, 0);
+            for (Word slot = opponents; slot < 4; ++slot)
+                data.state.participating[slot] = false;
+            auto p = Player::developer_session(data);
+            for (int i = 0; i < 30 && !p.ended(); ++i) CHECK(p.advance_turn(37));
+            CHECK(p.ended());
+            EndgamePresentation ending;
+            CHECK(!ending.begin(p, true));
+            CHECK(ending.begin(p, false));
+            CHECK(ending.winner() == -1 && !ending.hall());
+            for (int frame = 0; frame < 10; ++frame) {
+                ending.tick(10);
+                CHECK(extinction_stage(ending.elapsed()) == frame);
+                CHECK(!ending.hall());
+            }
+            ending.tick(extinction_duration());
+            CHECK(ending.hall() && ending.restart_ready());
+        }
+    });
+
+    group("extinction displays every recovered frame before Hall", [] {
+        CHECK(extinction_stage(0) == -1);
+        double elapsed = extinction_earth_seconds;
+        for (std::size_t i = 0; i < extinction_frames.size(); ++i) {
+            auto frame = extinction_frames[i];
+            CHECK(extinction_stage(elapsed + frame.seconds / 2) == int(i));
+            CHECK(frame.source.w == frame.destination.w);
+            CHECK(frame.source.h == frame.destination.h);
+            CHECK(frame.source.x + frame.source.w <= 320);
+            CHECK(frame.source.y + frame.source.h <= (frame.large ? 432 : 176));
+            elapsed += frame.seconds;
+        }
+        CHECK(extinction_stage(elapsed + .001) == 10);
+        CHECK(extinction_frames[5].source.w == 160);
     });
 
     group("highscore persistence roundtrip is separate from source and duplicate guarded", [] {

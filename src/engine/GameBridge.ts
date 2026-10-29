@@ -22,6 +22,9 @@ export interface GameStatus {
   round: number;
   stage: number;
   selected: number;
+  participants: number;
+  extinctionStage: number;
+  hall: boolean;
   active: boolean;
   eligible: boolean;
   ending: boolean;

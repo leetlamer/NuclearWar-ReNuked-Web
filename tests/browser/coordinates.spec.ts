@@ -25,8 +25,10 @@ for (const [dpr, width, height] of [
       const s = document.querySelector("#source") as HTMLCanvasElement,
         c = document.querySelector("#screen") as HTMLCanvasElement;
       const expected = new Image();
-      expected.src =
-        "/docs/validation/display-coordinates/desktop-selection.png";
+      expected.src = new URL(
+        "docs/validation/display-coordinates/desktop-selection.png",
+        document.baseURI,
+      ).href;
       await expected.decode();
       const ref = document.createElement("canvas");
       ref.width = 320;
@@ -36,7 +38,11 @@ for (const [dpr, width, height] of [
       const baseline = ctx.getImageData(0, 0, 320, 200).data;
       // Animated 32x32 faces have variable time poses; the title, labels and all portrait bounds must match exactly.
       const portraits = (
-        await (await fetch("/assets/data/interface_layout.json")).json()
+        await (
+          await fetch(
+            new URL("assets/data/interface_layout.json", document.baseURI),
+          )
+        ).json()
       ).portraits as number[][];
       app.renderer.render();
       const source = s.getContext("2d")!.getImageData(0, 0, 320, 200).data;
@@ -100,9 +106,12 @@ test("logical sprite corners project correctly and pointer mapping reverses the 
   await page.waitForTimeout(500);
   await expect(page.locator("[data-render-diagnostics]")).toBeVisible();
   const result = await page.evaluate(async () => {
-    const { logicalToDisplay, displayToLogical } =
-      await import("/src/rendering/viewport.ts");
-    const { Vector3 } = await import("/node_modules/.vite/deps/three.js");
+    const { logicalToDisplay, displayToLogical } = await import(
+      new URL("src/rendering/viewport.ts", document.baseURI).href
+    );
+    const { Vector3 } = await import(
+      new URL("node_modules/.vite/deps/three.js", document.baseURI).href
+    );
     const renderer = (window as any).nuclearWar.renderer,
       d = renderer.diagnostics();
     const points = [
