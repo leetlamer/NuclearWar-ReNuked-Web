@@ -1,3 +1,5 @@
+> Historical 2026-10-29 report. Later UFO rollback: SELECTIVE_SPECIAL_EVENT_ROLLBACK.md. Roster and complete extinction ending remain intact.
+
 # Roster, Earth extinction and UFO restoration — browser synchronization
 
 ## Delivery status

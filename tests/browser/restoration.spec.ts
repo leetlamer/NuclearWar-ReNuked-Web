@@ -91,7 +91,7 @@ test("all ten Earth stages precede space Hall, with original packed imagery", as
   await expect.poll(async () => (await status(page)).screen).toBe(2);
   expect((await status(page)).participants).toBe(3);
 });
-test("original UFO and yellow frames descend, fire, depart and complete", async ({
+test("immigration restores original landing without secondary lasers", async ({
   page,
 }, info) => {
   await fixture(page, [
@@ -117,9 +117,9 @@ test("original UFO and yellow frames descend, fire, depart and complete", async 
           t < 0.3
             ? "descend"
             : t >= 0.8 && t < 1.8
-              ? "yellow"
+              ? "landing"
               : t > 2.5
-                ? "ascend"
+                ? "landed"
                 : "";
         if (key && !found[key])
           found[key] = (
@@ -130,11 +130,68 @@ test("original UFO and yellow frames descend, fire, depart and complete", async 
     }
     return found;
   });
-  for (const key of ["descend", "yellow", "ascend"])
+  for (const key of ["descend", "landing", "landed"])
     expect(frames[key], key).toBeTruthy();
   for (const [name, data] of Object.entries(frames))
     writeFileSync(
       info.outputPath(`ufo-${name}.png`),
       Buffer.from(data.split(",")[1], "base64"),
     );
+});
+
+test("city lift redraws resolved ground tile and releases its presentation", async ({
+  page,
+}, info) => {
+  await fixture(page, [
+    "--smoke-test",
+    "/test",
+    "--media-fixture",
+    "alien-departure",
+    "--replay-target",
+    "4:0",
+    "--browser-realtime",
+    "--typing-cps",
+    "1000",
+  ]);
+  for (const time of [1.1, 3.1]) {
+    await page.waitForFunction((time) => {
+      const s = (window as any).nuclearWar.engine.status();
+      return s.action === 11 && s.active && s.timeline >= time;
+    }, time);
+    const differences = await page.evaluate(async () => {
+      const load = async (path: string) => {
+        const image = new Image();
+        image.src = new URL(path, document.baseURI).href;
+        await image.decode();
+        const c = document.createElement("canvas");
+        c.width = image.width;
+        c.height = image.height;
+        const ctx = c.getContext("2d")!;
+        ctx.drawImage(image, 0, 0);
+        return ctx;
+      };
+      const world = await load("assets/images/backgrounds/world_map.png");
+      const atlas = await load("assets/images/effects/small_sprites.png");
+      const expected = world.getImageData(130, 81, 16, 16).data;
+      const ruin = atlas.getImageData(160, 112, 16, 16).data;
+      const actual = (document.querySelector("#source") as HTMLCanvasElement)
+        .getContext("2d")!
+        .getImageData(130, 81, 16, 16).data;
+      let difference = 0;
+      for (let i = 0; i < actual.length; i += 4)
+        for (let channel = 0; channel < 3; channel++) {
+          const value = ruin[i + 3] ? ruin[i + channel] : expected[i + channel];
+          if (actual[i + channel] !== value) difference++;
+        }
+      return difference;
+    });
+    expect(differences).toBe(0);
+    await page.screenshot({
+      path: info.outputPath(`city-refreshed-${time}.png`),
+    });
+  }
+  await click(page, 160, 100);
+  await expect
+    .poll(async () => (await status(page)).active, { timeout: 15000 })
+    .toBe(false);
 });

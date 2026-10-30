@@ -1,3 +1,7 @@
+# Selective special-event rollback — 2026-10-30
+
+See docs/SELECTIVE_SPECIAL_EVENT_ROLLBACK.md. Restored original single-UFO immigration (no lasers) and corrected city-lift stationary redraw/end cleanup. Protected roster1–4 and complete Earth cracking/five-bigexp-frame ending, sound and space Hall are byte-identical to safety checkpoint. Desktop17/17optimized+UBSan; web10native+10Wasm+3parity; browser87matrix+41UI checks pass. Safety tags and verified bundles exist; no push/deploy/shutdown; GameReverse read-only.
+
 # Browser restoration handoff — 2026-10-29
 
 See docs/RESTORATION_REPORT.md and docs/validation/restoration.

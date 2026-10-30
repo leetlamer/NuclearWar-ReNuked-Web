@@ -1,0 +1,58 @@
+
+> nuclear-war-renuked-web@1.0.0 test:browser
+> playwright test --project=chromium tests/browser/startup.spec.ts tests/browser/hold-timing.spec.ts tests/browser/speech-font.spec.ts tests/browser/layout.spec.ts
+
+[WebServer] (node:4603) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 41 tests using 1 worker
+
+(node:4615) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TIMING speech {"normal":3.003,"held":2.058,"thresholdMs":200}
+  ✓   1 [chromium] › tests/browser/hold-timing.spec.ts:42:3 › speech: a 3s presentation interval takes approximately T/1.5 while held (5.9s)
+TIMING missile {"normal":3.007,"held":2.075,"thresholdMs":200}
+  ✓   2 [chromium] › tests/browser/hold-timing.spec.ts:42:3 › missile: a 3s presentation interval takes approximately T/1.5 while held (5.7s)
+TIMING bomber-attack {"normal":3.003,"held":2.084,"thresholdMs":200}
+  ✓   3 [chromium] › tests/browser/hold-timing.spec.ts:42:3 › bomber-attack: a 3s presentation interval takes approximately T/1.5 while held (5.7s)
+TIMING revenge-human {"normal":3.001,"held":2.085,"thresholdMs":200}
+  ✓   4 [chromium] › tests/browser/hold-timing.spec.ts:42:3 › revenge-human: a 3s presentation interval takes approximately T/1.5 while held (19.6s)
+  ✓   5 [chromium] › tests/browser/hold-timing.spec.ts:105:3 › hold clears on pointercancel (727ms)
+  ✓   6 [chromium] › tests/browser/hold-timing.spec.ts:105:3 › hold clears on lostpointercapture (699ms)
+  ✓   7 [chromium] › tests/browser/hold-timing.spec.ts:105:3 › hold clears on blur (596ms)
+  ✓   8 [chromium] › tests/browser/hold-timing.spec.ts:105:3 › hold clears on visibilitychange (698ms)
+  ✓   9 [chromium] › tests/browser/hold-timing.spec.ts:141:1 › holding continues across revenge attack boundaries without skipping the next attack (11.4s)
+  ✓  10 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 1920x1080 with accurate selection hitboxes (994ms)
+  ✓  11 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 2560x1440 with accurate selection hitboxes (1.0s)
+  ✓  12 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 1366x768 with accurate selection hitboxes (963ms)
+  ✓  13 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 1280x720 with accurate selection hitboxes (983ms)
+  ✓  14 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 1024x600 with accurate selection hitboxes (986ms)
+  ✓  15 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 800x450 with accurate selection hitboxes (956ms)
+  ✓  16 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 640x360 with accurate selection hitboxes (955ms)
+  ✓  17 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 360x640 with accurate selection hitboxes (975ms)
+  ✓  18 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 320x240 with accurate selection hitboxes (954ms)
+  ✓  19 [chromium] › tests/browser/layout.spec.ts:16:3 › fits viewport 240x640 with accurate selection hitboxes (956ms)
+  ✓  20 [chromium] › tests/browser/layout.spec.ts:92:1 › resizes a running game and enters/exits fullscreen without resetting state (1.3s)
+  ✓  21 [chromium] › tests/browser/layout.spec.ts:150:1 › uses device pixel ratio for sharpness without enlarging CSS layout (850ms)
+  ✓  22 [chromium] › tests/browser/speech-font.spec.ts:7:5 › speaker 0: proportional original font, short speech and emoji (2.0s)
+  ✓  23 [chromium] › tests/browser/speech-font.spec.ts:7:5 › speaker 0: proportional original font, long speech and emoji (2.1s)
+  ✓  24 [chromium] › tests/browser/speech-font.spec.ts:7:5 › speaker 1: proportional original font, short speech and emoji (2.0s)
+  ✓  25 [chromium] › tests/browser/speech-font.spec.ts:7:5 › speaker 1: proportional original font, long speech and emoji (2.1s)
+  ✓  26 [chromium] › tests/browser/speech-font.spec.ts:7:5 › speaker 2: proportional original font, short speech and emoji (2.1s)
+  ✓  27 [chromium] › tests/browser/speech-font.spec.ts:7:5 › speaker 2: proportional original font, long speech and emoji (2.1s)
+  ✓  28 [chromium] › tests/browser/speech-font.spec.ts:7:5 › speaker 3: proportional original font, short speech and emoji (2.1s)
+  ✓  29 [chromium] › tests/browser/speech-font.spec.ts:7:5 › speaker 3: proportional original font, long speech and emoji (2.0s)
+  ✓  30 [chromium] › tests/browser/speech-font.spec.ts:173:3 › same desktop speech message fits 1366x768 (926ms)
+  ✓  31 [chromium] › tests/browser/speech-font.spec.ts:173:3 › same desktop speech message fits 800x450 (888ms)
+  ✓  32 [chromium] › tests/browser/speech-font.spec.ts:173:3 › same desktop speech message fits 640x360 (886ms)
+  ✓  33 [chromium] › tests/browser/startup.spec.ts:2:1 › real resource loading gates readiness, shows supplied banner and starts only on click (367ms)
+  ✓  34 [chromium] › tests/browser/startup.spec.ts:53:3 › critical nuclearwar.data failure is visible and retry restores loading (212ms)
+  ✓  35 [chromium] › tests/browser/startup.spec.ts:53:3 › critical nuclear-war-renuked-banner.png failure is visible and retry restores loading (225ms)
+  ✓  36 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 1920x1080 (254ms)
+  ✓  37 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 1366x768 (229ms)
+  ✓  38 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 1280x720 (221ms)
+  ✓  39 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 800x450 (194ms)
+  ✓  40 [chromium] › tests/browser/startup.spec.ts:82:3 › banner and start fit 360x640 (188ms)
+  ✓  41 [chromium] › tests/browser/startup.spec.ts:106:1 › blocked optional saved-score storage does not block readiness forever (3.4s)
+
+  41 passed (1.5m)

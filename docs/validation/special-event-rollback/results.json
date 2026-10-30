@@ -1,0 +1,11 @@
+{
+  "desktop_commit": "d9d8d8f",
+  "browser_matrix": 87,
+  "browser_ui": 41,
+  "native_engine_suites": 10,
+  "wasm_suites": 10,
+  "node_parity": 3,
+  "protected_features": "byte-identical to safety tag",
+  "sound": "original trigger preserved; no audible listening claim",
+  "extinction": "all ten stages / all five bigexp frames and space Hall, restart and reselection pass"
+}
