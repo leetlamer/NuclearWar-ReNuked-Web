@@ -8,6 +8,10 @@ existing presentation controller run as WebAssembly. Three.js displays the game'
 preserved 320×200 sprite compositor with an orthographic camera and nearest-neighbor
 sampling. SDL is compiled into Wasm/JavaScript; browser users install no native SDL.
 
+Play on your browser with GitHub pages on the link below!
+
+https://leetlamer.github.io/NuclearWar-ReNuked-Web/
+
 ## Run locally
 
 Requires Node.js 22.12+ (tested with 26), npm, Python 3 and Git for Emscripten setup.
